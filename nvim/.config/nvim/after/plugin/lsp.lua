@@ -13,9 +13,10 @@ end)
 
 require('mason').setup({})
 require('mason-lspconfig').setup({
-    ensure_installed = { 'clangd', 'eslint', 'lua_ls', 'rust_analyzer', 'pyright', 'jdtls', 'solargraph' },
+    ensure_installed = { 'clangd', 'eslint', 'lua_ls', 'rust_analyzer', 'pyright', 'jdtls', 'solargraph', 'tailwindcss' },
     handlers = {
         lsp_zero.default_setup,
+
         -- Dedicated handler for ruby_lsp
         ruby_lsp = function()
             require('lspconfig').ruby_lsp.setup({
@@ -32,6 +33,30 @@ require('mason-lspconfig').setup({
                         "onTypeFormatting",
                         "selectionRanges",
                         "semanticHighlighting",
+                    },
+                },
+            })
+        end,
+
+        tailwindcss = function()
+            require('lspconfig').tailwindcss.setup({
+                filetypes = { "html", "erb", "ruby", "javascript", "typescript", "react", "css" },
+                init_options = {
+                    userLanguages = {
+                        erb = "html",
+                        ruby = "html"
+                    }
+                },
+                settings = {
+                    tailwindCSS = {
+                        experimental = {
+                            classRegex = {
+                                -- This allows tailwind completion inside Rails helper strings
+                                "class:\\s*\"([^\"]*)", 
+                                "class:\\s*'([^']*)",
+                                "~\\s*\"([^\"]*)",
+                            },
+                        },
                     },
                 },
             })

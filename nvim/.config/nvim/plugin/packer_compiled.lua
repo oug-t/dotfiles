@@ -121,7 +121,7 @@ _G.packer_plugins = {
     url = "https://github.com/ThePrimeagen/harpoon"
   },
   ["indent-blankline.nvim"] = {
-    config = { "\27LJ\2\n²\2\0\0\5\0\r\0$6\0\0\0009\0\1\0009\0\2\0)\2\0\0'\3\3\0005\4\4\0B\0\4\0016\0\0\0009\0\1\0009\0\2\0)\2\0\0'\3\5\0005\4\6\0B\0\4\0016\0\0\0009\0\1\0009\0\2\0)\2\0\0'\3\a\0005\4\b\0B\0\4\0016\0\0\0009\0\1\0009\0\2\0)\2\0\0'\3\t\0005\4\n\0B\0\4\0016\0\0\0009\0\1\0009\0\2\0)\2\0\0'\3\v\0005\4\f\0B\0\4\1K\0\1\0\1\0\1\afg\f#a3be8c\18NordLightBlue\1\0\1\afg\f#8fbcbb\rNordCyan\1\0\1\afg\f#88c0d0\18NordFrostBlue\1\0\1\afg\f#81a1c1\19NordMediumBlue\1\0\1\afg\f#5e81ac\17NordDeepBlue\16nvim_set_hl\bapi\bvim§\2\1\0\6\0\15\0\0216\0\0\0'\2\1\0B\0\2\0025\1\2\0009\2\3\0009\4\4\0009\4\5\0043\5\6\0B\2\3\0016\2\0\0'\4\a\0B\2\2\0029\2\b\0025\4\v\0005\5\t\0=\1\n\5=\5\f\0045\5\r\0=\5\14\4B\2\2\1K\0\1\0\nscope\1\0\1\fenabled\1\vindent\1\0\2\nscope\0\vindent\0\14highlight\1\0\2\14highlight\0\tchar\bâ”†\nsetup\bibl\0\20HIGHLIGHT_SETUP\ttype\rregister\1\6\0\0\17NordDeepBlue\19NordMediumBlue\18NordFrostBlue\rNordCyan\18NordLightBlue\14ibl.hooks\frequire\0" },
+    config = { "\27LJ\2\n²\2\0\0\5\0\r\0$6\0\0\0009\0\1\0009\0\2\0)\2\0\0'\3\3\0005\4\4\0B\0\4\0016\0\0\0009\0\1\0009\0\2\0)\2\0\0'\3\5\0005\4\6\0B\0\4\0016\0\0\0009\0\1\0009\0\2\0)\2\0\0'\3\a\0005\4\b\0B\0\4\0016\0\0\0009\0\1\0009\0\2\0)\2\0\0'\3\t\0005\4\n\0B\0\4\0016\0\0\0009\0\1\0009\0\2\0)\2\0\0'\3\v\0005\4\f\0B\0\4\1K\0\1\0\1\0\1\afg\f#a3be8c\18NordLightBlue\1\0\1\afg\f#8fbcbb\rNordCyan\1\0\1\afg\f#88c0d0\18NordFrostBlue\1\0\1\afg\f#81a1c1\19NordMediumBlue\1\0\1\afg\f#5e81ac\17NordDeepBlue\16nvim_set_hl\bapi\bvim§\2\1\0\6\0\15\0\0216\0\0\0'\2\1\0B\0\2\0025\1\2\0009\2\3\0009\4\4\0009\4\5\0043\5\6\0B\2\3\0016\2\0\0'\4\a\0B\2\2\0029\2\b\0025\4\v\0005\5\t\0=\1\n\5=\5\f\0045\5\r\0=\5\14\4B\2\2\1K\0\1\0\nscope\1\0\1\fenabled\1\vindent\1\0\2\vindent\0\nscope\0\14highlight\1\0\2\14highlight\0\tchar\bâ”†\nsetup\bibl\0\20HIGHLIGHT_SETUP\ttype\rregister\1\6\0\0\17NordDeepBlue\19NordMediumBlue\18NordFrostBlue\rNordCyan\18NordLightBlue\14ibl.hooks\frequire\0" },
     loaded = true,
     path = "/home/tommy/.local/share/nvim/site/pack/packer/start/indent-blankline.nvim",
     url = "https://github.com/lukas-reineke/indent-blankline.nvim"
@@ -235,14 +235,14 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
+-- Config for: indent-blankline.nvim
+time([[Config for indent-blankline.nvim]], true)
+try_loadstring("\27LJ\2\n²\2\0\0\5\0\r\0$6\0\0\0009\0\1\0009\0\2\0)\2\0\0'\3\3\0005\4\4\0B\0\4\0016\0\0\0009\0\1\0009\0\2\0)\2\0\0'\3\5\0005\4\6\0B\0\4\0016\0\0\0009\0\1\0009\0\2\0)\2\0\0'\3\a\0005\4\b\0B\0\4\0016\0\0\0009\0\1\0009\0\2\0)\2\0\0'\3\t\0005\4\n\0B\0\4\0016\0\0\0009\0\1\0009\0\2\0)\2\0\0'\3\v\0005\4\f\0B\0\4\1K\0\1\0\1\0\1\afg\f#a3be8c\18NordLightBlue\1\0\1\afg\f#8fbcbb\rNordCyan\1\0\1\afg\f#88c0d0\18NordFrostBlue\1\0\1\afg\f#81a1c1\19NordMediumBlue\1\0\1\afg\f#5e81ac\17NordDeepBlue\16nvim_set_hl\bapi\bvim§\2\1\0\6\0\15\0\0216\0\0\0'\2\1\0B\0\2\0025\1\2\0009\2\3\0009\4\4\0009\4\5\0043\5\6\0B\2\3\0016\2\0\0'\4\a\0B\2\2\0029\2\b\0025\4\v\0005\5\t\0=\1\n\5=\5\f\0045\5\r\0=\5\14\4B\2\2\1K\0\1\0\nscope\1\0\1\fenabled\1\vindent\1\0\2\vindent\0\nscope\0\14highlight\1\0\2\14highlight\0\tchar\bâ”†\nsetup\bibl\0\20HIGHLIGHT_SETUP\ttype\rregister\1\6\0\0\17NordDeepBlue\19NordMediumBlue\18NordFrostBlue\rNordCyan\18NordLightBlue\14ibl.hooks\frequire\0", "config", "indent-blankline.nvim")
+time([[Config for indent-blankline.nvim]], false)
 -- Config for: markdown-preview.nvim
 time([[Config for markdown-preview.nvim]], true)
 try_loadstring("\27LJ\2\n=\0\0\2\0\4\0\0056\0\0\0009\0\1\0005\1\3\0=\1\2\0K\0\1\0\1\2\0\0\rmarkdown\19mkdp_filetypes\6g\bvim\0", "config", "markdown-preview.nvim")
 time([[Config for markdown-preview.nvim]], false)
--- Config for: indent-blankline.nvim
-time([[Config for indent-blankline.nvim]], true)
-try_loadstring("\27LJ\2\n²\2\0\0\5\0\r\0$6\0\0\0009\0\1\0009\0\2\0)\2\0\0'\3\3\0005\4\4\0B\0\4\0016\0\0\0009\0\1\0009\0\2\0)\2\0\0'\3\5\0005\4\6\0B\0\4\0016\0\0\0009\0\1\0009\0\2\0)\2\0\0'\3\a\0005\4\b\0B\0\4\0016\0\0\0009\0\1\0009\0\2\0)\2\0\0'\3\t\0005\4\n\0B\0\4\0016\0\0\0009\0\1\0009\0\2\0)\2\0\0'\3\v\0005\4\f\0B\0\4\1K\0\1\0\1\0\1\afg\f#a3be8c\18NordLightBlue\1\0\1\afg\f#8fbcbb\rNordCyan\1\0\1\afg\f#88c0d0\18NordFrostBlue\1\0\1\afg\f#81a1c1\19NordMediumBlue\1\0\1\afg\f#5e81ac\17NordDeepBlue\16nvim_set_hl\bapi\bvim§\2\1\0\6\0\15\0\0216\0\0\0'\2\1\0B\0\2\0025\1\2\0009\2\3\0009\4\4\0009\4\5\0043\5\6\0B\2\3\0016\2\0\0'\4\a\0B\2\2\0029\2\b\0025\4\v\0005\5\t\0=\1\n\5=\5\f\0045\5\r\0=\5\14\4B\2\2\1K\0\1\0\nscope\1\0\1\fenabled\1\vindent\1\0\2\nscope\0\vindent\0\14highlight\1\0\2\14highlight\0\tchar\bâ”†\nsetup\bibl\0\20HIGHLIGHT_SETUP\ttype\rregister\1\6\0\0\17NordDeepBlue\19NordMediumBlue\18NordFrostBlue\rNordCyan\18NordLightBlue\14ibl.hooks\frequire\0", "config", "indent-blankline.nvim")
-time([[Config for indent-blankline.nvim]], false)
 -- Config for: competitest.nvim
 time([[Config for competitest.nvim]], true)
 try_loadstring("\27LJ\2\n9\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\16competitest\frequire\0", "config", "competitest.nvim")
