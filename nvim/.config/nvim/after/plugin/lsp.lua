@@ -13,7 +13,7 @@ end)
 
 require('mason').setup({})
 require('mason-lspconfig').setup({
-    ensure_installed = { 'clangd', 'eslint', 'lua_ls', 'rust_analyzer', 'pyright', 'jdtls', 'solargraph', 'tailwindcss', 'html' },
+    ensure_installed = { 'clangd', 'eslint', 'lua_ls', 'rust_analyzer', 'pyright', 'jdtls', 'solargraph', 'tailwindcss', 'html', 'marksman', 'ltex' },
     handlers = {
         lsp_zero.default_setup,
 

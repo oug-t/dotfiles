@@ -32,8 +32,24 @@ vim.keymap.set("i", "<C-c>", "<Esc>")
 
 vim.keymap.set("n", "Q", "<nop>")
 vim.keymap.set("n", "<leader>f", function()
-    vim.lsp.buf.format()
-end)
+    -- Check for attached LSP clients that support formatting
+    local clients = vim.lsp.get_clients({
+        bufnr = 0,
+        method = "textDocument/formatting",
+    })
+
+    if #clients > 0 then
+        vim.lsp.buf.format({
+            async = false,
+        })
+    else
+        -- Fallback to Vim's built-in formatter
+        local view = vim.fn.winsaveview()
+        vim.cmd("normal! gqap")
+        vim.fn.winrestview(view)
+    end
+end, { desc = "Format buffer (LSP or Vim fallback)" })
+
 
 vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
 vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")

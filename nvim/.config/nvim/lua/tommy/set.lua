@@ -6,7 +6,10 @@ vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 
-vim.opt.smartindent = ture
+vim.opt.textwidth = 80
+vim.opt.formatoptions:append("t")
+vim.opt.smartindent = true
+vim.opt.formatoptions = "jptcq"
 
 vim.opt.swapfile = false
 vim.opt.backup = false
@@ -28,4 +31,3 @@ vim.opt.updatetime = 50
 vim.opt.spell = true
 vim.opt.spelllang = "en_us"
 
-vim.cmd('packadd! matchit')
