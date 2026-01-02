@@ -1,5 +1,5 @@
 vim.g.mapleader = " "
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex) -- pv stands for pervious; pv are easy to type.
+vim.keymap.set("n", "<leader>pv", function() require("oil").open() end)
 
 -- Move lines when highlighted.
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")

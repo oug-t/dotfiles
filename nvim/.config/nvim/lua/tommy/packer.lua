@@ -136,4 +136,29 @@ return require('packer').startup(function(use)
     })
 
     use 'tpope/vim-rails'
+
+    use {
+        "stevearc/oil.nvim",
+        requires = { "nvim-tree/nvim-web-devicons" },
+        config = function()
+            require("oil").setup({
+                columns = {
+                    "icon",
+                    "permissions",
+                    "size",
+                },
+                view_options = {
+                    show_hidden = true,
+                    natural_order = true,
+                },
+                float = {
+                    padding = 2,
+                    border = "rounded",
+                },
+            })
+        end,
+    }
+
+    use { "nvim-tree/nvim-web-devicons" }
+
 end)
