@@ -134,4 +134,6 @@ return require('packer').startup(function(use)
         config = function() require('competitest').setup()
         end
     })
+
+    use 'tpope/vim-rails'
 end)

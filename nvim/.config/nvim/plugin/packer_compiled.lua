@@ -227,6 +227,11 @@ _G.packer_plugins = {
     path = "/home/tommy/.local/share/nvim/site/pack/packer/start/vim-fugitive",
     url = "https://github.com/tpope/vim-fugitive"
   },
+  ["vim-rails"] = {
+    loaded = true,
+    path = "/home/tommy/.local/share/nvim/site/pack/packer/start/vim-rails",
+    url = "https://github.com/tpope/vim-rails"
+  },
   ["vim-tmux-navigator"] = {
     loaded = true,
     path = "/home/tommy/.local/share/nvim/site/pack/packer/start/vim-tmux-navigator",
