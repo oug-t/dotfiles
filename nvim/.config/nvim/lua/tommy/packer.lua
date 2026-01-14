@@ -8,8 +8,8 @@ return require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
 
     use {
-        'nvim-telescope/telescope.nvim', 
-        requires = { {'nvim-lua/plenary.nvim'} }
+        'nvim-telescope/telescope.nvim',
+        requires = { { 'nvim-lua/plenary.nvim' } }
     }
 
     -- Nordfox
@@ -51,15 +51,15 @@ return require('packer').startup(function(use)
 
             -- Register the blue colors FIRST
             hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
-                vim.api.nvim_set_hl(0, "NordDeepBlue",   { fg = "#5e81ac" }) -- Nord10 (Darker)
+                vim.api.nvim_set_hl(0, "NordDeepBlue", { fg = "#5e81ac" })   -- Nord10 (Darker)
                 vim.api.nvim_set_hl(0, "NordMediumBlue", { fg = "#81a1c1" }) -- Nord9
-                vim.api.nvim_set_hl(0, "NordFrostBlue",  { fg = "#88c0d0" }) -- Nord8 (Bright)
-                vim.api.nvim_set_hl(0, "NordCyan",       { fg = "#8fbcbb" }) -- Nord7 (Teal-ish)
-                vim.api.nvim_set_hl(0, "NordLightBlue",  { fg = "#a3be8c" }) -- NordGreen (to add slight variety)
+                vim.api.nvim_set_hl(0, "NordFrostBlue", { fg = "#88c0d0" })  -- Nord8 (Bright)
+                vim.api.nvim_set_hl(0, "NordCyan", { fg = "#8fbcbb" })       -- Nord7 (Teal-ish)
+                vim.api.nvim_set_hl(0, "NordLightBlue", { fg = "#a3be8c" })  -- NordGreen (to add slight variety)
             end)
 
             require("ibl").setup {
-                indent = { 
+                indent = {
                     char = "┆", -- Your preferred dotted pipe
                     highlight = highlight,
                 },
@@ -74,11 +74,11 @@ return require('packer').startup(function(use)
     use {
         "ThePrimeagen/harpoon",
         branch = "harpoon2",
-        requires = { {"nvim-lua/plenary.nvim"} }
+        requires = { { "nvim-lua/plenary.nvim" } }
     }
     use('mbbill/undotree')
 
-    -- Git plugin 
+    -- Git plugin
     use('tpope/vim-fugitive')
 
     -- LSP
@@ -87,21 +87,21 @@ return require('packer').startup(function(use)
         branch = 'v3.x',
         requires = {
             -- LSP Support
-            {'neovim/nvim-lspconfig'},
-            {'williamboman/mason.nvim'},
-            {'williamboman/mason-lspconfig.nvim'},
+            { 'neovim/nvim-lspconfig' },
+            { 'williamboman/mason.nvim' },
+            { 'williamboman/mason-lspconfig.nvim' },
 
             -- Autocompletion
-            {'hrsh7th/nvim-cmp'},
-            {'hrsh7th/cmp-buffer'},
-            {'hrsh7th/cmp-path'},
-            {'saadparwaiz1/cmp_luasnip'},
-            {'hrsh7th/cmp-nvim-lsp'},
-            {'hrsh7th/cmp-nvim-lua'},
+            { 'hrsh7th/nvim-cmp' },
+            { 'hrsh7th/cmp-buffer' },
+            { 'hrsh7th/cmp-path' },
+            { 'saadparwaiz1/cmp_luasnip' },
+            { 'hrsh7th/cmp-nvim-lsp' },
+            { 'hrsh7th/cmp-nvim-lua' },
 
             -- Snippets
-            {'L3MON4D3/LuaSnip'},
-            {'rafamadriz/friendly-snippets'},
+            { 'L3MON4D3/LuaSnip' },
+            { 'rafamadriz/friendly-snippets' },
 
         }
     }
@@ -131,7 +131,8 @@ return require('packer').startup(function(use)
     use({
         'xeluxee/competitest.nvim',
         requires = 'MunifTanjim/nui.nvim',
-        config = function() require('competitest').setup()
+        config = function()
+            require('competitest').setup()
         end
     })
 
@@ -160,5 +161,28 @@ return require('packer').startup(function(use)
     }
 
     use { "nvim-tree/nvim-web-devicons" }
+    use { "tpope/vim-surround" }
 
+    use {
+        "stevearc/conform.nvim",
+        config = function()
+            require("conform").setup({
+                format_on_save = {
+                    timeout_ms = 2000,
+                    lsp_fallback = true,
+                },
+                formatters_by_ft = {
+                    javascript = { "prettier" },
+                    javascriptreact = { "prettier" },
+                    typescript = { "prettier" },
+                    typescriptreact = { "prettier" },
+                    svelte = { "prettier" },
+                    json = { "prettier" },
+                    css = { "prettier" },
+                    html = { "prettier" },
+                    markdown = { "prettier" },
+                },
+            })
+        end
+    }
 end)

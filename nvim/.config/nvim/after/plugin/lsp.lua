@@ -13,7 +13,7 @@ end)
 
 require('mason').setup({})
 require('mason-lspconfig').setup({
-    ensure_installed = { 'clangd', 'eslint', 'lua_ls', 'rust_analyzer', 'pyright', 'jdtls', 'solargraph', 'tailwindcss', 'html', 'marksman', 'ltex' },
+    ensure_installed = { 'clangd', 'eslint', 'lua_ls', 'rust_analyzer', 'pyright', 'jdtls', 'solargraph', 'tailwindcss', 'html', 'marksman', 'ltex', 'ocamllsp' },
     handlers = {
         lsp_zero.default_setup,
 
@@ -52,13 +52,19 @@ require('mason-lspconfig').setup({
                         experimental = {
                             classRegex = {
                                 -- This allows tailwind completion inside Rails helper strings
-                                "class:\\s*\"([^\"]*)", 
+                                "class:\\s*\"([^\"]*)",
                                 "class:\\s*'([^']*)",
                                 "~\\s*\"([^\"]*)",
                             },
                         },
                     },
                 },
+            })
+        end,
+
+        ocamllsp = function()
+            require('lspconfig').ocamllsp.setup({
+                cmd = { "ocamllsp" },
             })
         end,
     },
