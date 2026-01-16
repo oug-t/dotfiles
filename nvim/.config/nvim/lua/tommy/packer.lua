@@ -176,10 +176,14 @@ return require('packer').startup(function(use)
         "stevearc/conform.nvim",
         config = function()
             require("conform").setup({
-                format_on_save = {
-                    timeout_ms = 2000,
-                    lsp_fallback = true,
-                },
+                format_on_save = function(bufnr)
+                    local ft = vim.bo[bufnr].filetype
+                    if ft == "c" or ft == "cpp" then
+                        return { lsp_fallback = false }
+                    end
+                    return { lsp_fallback = true }
+                end,
+
                 -- 1. Configure clang_format to use 4 spaces explicitly
                 formatters = {
                     clang_format = {
