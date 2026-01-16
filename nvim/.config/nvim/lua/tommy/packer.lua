@@ -161,7 +161,16 @@ return require('packer').startup(function(use)
     }
 
     use { "nvim-tree/nvim-web-devicons" }
-    use { "tpope/vim-surround" }
+
+    use {
+        "windwp/nvim-autopairs",
+        config = function()
+            require("nvim-autopairs").setup({
+                disable_filetype = { "TelescopePrompt" },
+            })
+        end
+    }
+
 
     use {
         "stevearc/conform.nvim",
@@ -171,7 +180,14 @@ return require('packer').startup(function(use)
                     timeout_ms = 2000,
                     lsp_fallback = true,
                 },
+                -- 1. Configure clang_format to use 4 spaces explicitly
+                formatters = {
+                    clang_format = {
+                        prepend_args = { "--style={BasedOnStyle: LLVM, IndentWidth: 4, ColumnLimit: 100}" },
+                    },
+                },
                 formatters_by_ft = {
+                    -- Web
                     javascript = { "prettier" },
                     javascriptreact = { "prettier" },
                     typescript = { "prettier" },
@@ -181,7 +197,22 @@ return require('packer').startup(function(use)
                     css = { "prettier" },
                     html = { "prettier" },
                     markdown = { "prettier" },
+
+                    -- C/C++
+                    c = { "clang_format" },
+                    cpp = { "clang_format" },
                 },
+            })
+
+            -- 2. Force Neovim to visually use 4 spaces for C files so it matches the formatter
+            vim.api.nvim_create_autocmd("FileType", {
+                pattern = { "c", "cpp", "h", "hpp" },
+                callback = function()
+                    vim.opt_local.tabstop = 4
+                    vim.opt_local.shiftwidth = 4
+                    vim.opt_local.softtabstop = 4
+                    vim.opt_local.expandtab = true
+                end,
             })
         end
     }
