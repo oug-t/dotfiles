@@ -28,12 +28,12 @@ The goal is an environment that stays out of the way while still feeling intenti
 
 ## 🧰 Tooling Stack
 
-| Tool | Purpose | Config Location |
-| :--- | :--- | :--- |
-| **Neovim** | Primary editor (Lua-based, lazy-loaded) | `.config/nvim` |
-| **Tmux** | Terminal multiplexer | `.config/tmux` |
+| Tool        | Purpose                                 | Config Location   |
+| :---------- | :-------------------------------------- | :---------------- |
+| **Neovim**  | Primary editor (Lua-based, lazy-loaded) | `.config/nvim`    |
+| **Tmux**    | Terminal multiplexer                    | `.config/tmux`    |
 | **WezTerm** | GPU-accelerated terminal + transparency | `.config/wezterm` |
-| **Zsh** | Interactive shell | `.zshrc` |
+| **Zsh**     | Interactive shell                       | `.zshrc`          |
 
 ## ⚙️ Requirements
 
@@ -107,4 +107,4 @@ The screenshot above reflects an actual working session:
   <img src="https://img.shields.io/badge/Neovim-57A143?style=for-the-badge&logo=neovim&logoColor=white">
   <img src="https://img.shields.io/badge/WSL-0078D6?style=for-the-badge&logo=windows&logoColor=white">
 </p>
-
+```
