@@ -1,9 +1,13 @@
 vim.g.mapleader = " "
 
 -- === OIL FILE MANAGER ===
--- FIX: We wrap the require in a function so it only loads 
--- when you press the key. This prevents the startup crash.
+-- Map "-" to open parent directory (Standard vinegar style)
 vim.keymap.set("n", "-", function() 
+    require("oil").open() 
+end, { desc = "Open Oil File Manager" })
+
+-- Map "<leader>pv" to open Oil (Your preferred style)
+vim.keymap.set("n", "<leader>pv", function() 
     require("oil").open() 
 end, { desc = "Open Oil File Manager" })
 
@@ -40,18 +44,10 @@ vim.keymap.set("n", "Q", "<nop>")
 
 -- Format buffer (LSP or Vim fallback)
 vim.keymap.set("n", "<leader>f", function()
-    -- Check for attached LSP clients that support formatting
-    local clients = vim.lsp.get_clients({
-        bufnr = 0,
-        method = "textDocument/formatting",
-    })
-
+    local clients = vim.lsp.get_clients({ bufnr = 0, method = "textDocument/formatting" })
     if #clients > 0 then
-        vim.lsp.buf.format({
-            async = false,
-        })
+        vim.lsp.buf.format({ async = false })
     else
-        -- Fallback to Vim's built-in formatter
         local view = vim.fn.winsaveview()
         vim.cmd("normal! gqap")
         vim.fn.winrestview(view)

@@ -1,3 +1,6 @@
+-- LEADER
+vim.g.mapleader = " "
+
 -- 1. Bootstrap lazy.nvim (Installs itself if missing)
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -158,18 +161,25 @@ return require("lazy").setup({
 
     -- === TREESITTER ===
     {
-        'nvim-treesitter/nvim-treesitter',
-        build = ':TSUpdate',
-        config = function()
-            require("nvim-treesitter.configs").setup({
-                ensure_installed = { "c", "lua", "vim", "vimdoc", "javascript", "python", "ruby", "html", "css", "svelte", "ocaml" },
-                sync_install = false,
-                auto_install = true,
-                highlight = { enable = true },
-                indent = { enable = true }, -- Indentation enabled
-            })
-        end
-    },
+    'nvim-treesitter/nvim-treesitter',
+    build = ':TSUpdate',
+    config = function()
+        local install_dir = vim.fn.stdpath("data") .. "/treesitter-parsers"
+
+        require("nvim-treesitter").setup({
+            ensure_installed = { "c", "lua", "vim", "vimdoc", "javascript", "python", "ruby", "html", "css", "svelte", "ocaml" },
+            sync_install = false,
+            auto_install = true,
+            highlight = { enable = true },
+            indent = { enable = true },
+            parser_install_dir = install_dir,
+        })
+
+        -- Make Neovim find parsers in that custom directory
+        vim.opt.runtimepath:append(install_dir)
+    end
+},
+
 
     -- === HARPOON ===
     {
@@ -201,6 +211,17 @@ return require("lazy").setup({
         dependencies = { "nvim-tree/nvim-web-devicons" },
         config = function()
             require("oil").setup({
+                -- Add this 'keymaps' section
+                keymaps = {
+                    ["<C-h>"] = false, 
+                    ["<C-l>"] = false, 
+                    ["<C-k>"] = false, 
+                    ["<C-j>"] = false,
+                    -- keymaps set to 'false' will let the key pass through to your global config
+                    ["<leader>pf"] = false, 
+                    ["<leader>pg"] = false,
+                    ["<leader>ps"] = false,
+                },
                 columns = {
                     "icon",
                     "permissions",
