@@ -115,7 +115,6 @@ return require("lazy").setup({
 			require("mason").setup({})
 			require("mason-lspconfig").setup({
 				ensure_installed = {
-					"ts_ls",
 					"clangd",
 					"eslint",
 					"lua_ls",
@@ -130,7 +129,27 @@ return require("lazy").setup({
 				},
 				handlers = {
 					-- Default handler
-					lsp_zero.default_setup,
+					function(server_name)
+						local config = {
+							capabilities = capabilities,
+						}
+
+						-- Special configuration for eslint
+						if server_name == "eslint" then
+							config.on_attach = function(client, bufnr)
+								-- Enable formatting for eslint
+								client.server_capabilities.documentFormattingProvider = true
+								client.server_capabilities.documentRangeFormattingProvider = true
+								-- Call the default on_attach
+								lsp_zero.default_keymaps({ buffer = bufnr })
+							end
+							config.settings = {
+								format = true, -- Enable formatting in eslint
+							}
+						end
+
+						require("lspconfig")[server_name].setup(config)
+					end,
 
 					ruby_lsp = function()
 						require("lspconfig").ruby_lsp.setup({
@@ -163,33 +182,32 @@ return require("lazy").setup({
 			-- 4. CMP Setup
 			local cmp = require("cmp")
 			local cmp_select = { behavior = cmp.SelectBehavior.Select }
+
 			cmp.setup({
 				sources = {
 					{ name = "nvim_lsp" },
 					{ name = "luasnip" },
 					{ name = "buffer" },
 					{ name = "path" },
+					{ name = "nvim_lua" },
 				},
+				formatting = require("lspkind").cmp_format({
+					mode = "symbol_text",
+					maxwidth = 50,
+					ellipsis_char = "...",
+				}),
 				mapping = cmp.mapping.preset.insert({
 					["<C-p>"] = cmp.mapping.select_prev_item(cmp_select),
 					["<C-n>"] = cmp.mapping.select_next_item(cmp_select),
 					["<C-y>"] = cmp.mapping.confirm({ select = true }),
 					["<C-Space>"] = cmp.mapping.complete(),
+					["<C-e>"] = cmp.mapping.abort(),
 				}),
 				snippet = {
 					expand = function(args)
 						require("luasnip").lsp_expand(args.body)
 					end,
 				},
-				formatting = {
-					format = require("lspkind").cmp_format({
-						mode = "symbol_text",
-						maxwidth = 50,
-						ellipsis_char = "...",
-						menu = { buffer = "[Buffer]", nvim_lsp = "[LSP]", luasnip = "[Snippet]", path = "[Path]" },
-					}),
-				},
-				experimental = { ghost_text = true },
 			})
 		end,
 	},
