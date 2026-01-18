@@ -1,7 +1,6 @@
 -- LEADER
 vim.g.mapleader = " "
 
--- 1. Bootstrap lazy.nvim (Installs itself if missing)
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
     vim.fn.system({
@@ -15,8 +14,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- 2. General Settings (C/C++ Fix)
--- Defined before plugins load
+-- General Settings (C/C++ Fix)
 vim.api.nvim_create_autocmd("FileType", {
     pattern = { "c", "cpp", "h", "hpp" },
     callback = function()
@@ -300,6 +298,11 @@ return require("lazy").setup({
 
     -- === UTILITIES & GIT ===
     {
+        "windwp/nvim-autopairs",
+        event = "InsertEnter",
+        config = true;
+    },
+    {
         'mbbill/undotree',
         keys = {
             { "<leader>u", vim.cmd.UndotreeToggle, desc = "Toggle UndoTree" }
@@ -323,5 +326,42 @@ return require("lazy").setup({
             require("nightfox").setup({ options = { transparent = true } })
             vim.cmd.colorscheme "nordfox"
         end
+    },
+    {
+        "hiphish/rainbow-delimiters.nvim",
+        event = { "BufReadPre", "BufNewFile" },
+        dependencies = { "nvim-treesitter/nvim-treesitter" },
+    },
+    {
+        "lukas-reineke/indent-blankline.nvim",
+        main = "ibl",
+        event = { "BufReadPre", "BufNewFile" },
+        config = function()
+            local hooks = require("ibl.hooks")
+
+            local highlight = {
+                "NordDeepBlue",
+                "NordMediumBlue",
+                "NordFrostBlue",
+                "NordCyan",
+                "NordLightBlue",
+            }
+
+            hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
+                vim.api.nvim_set_hl(0, "NordDeepBlue", { fg = "#5e81ac" })
+                vim.api.nvim_set_hl(0, "NordMediumBlue", { fg = "#81a1c1" })
+                vim.api.nvim_set_hl(0, "NordFrostBlue", { fg = "#88c0d0" })
+                vim.api.nvim_set_hl(0, "NordCyan", { fg = "#8fbcbb" })
+                vim.api.nvim_set_hl(0, "NordLightBlue", { fg = "#a3be8c" })
+            end)
+
+            require("ibl").setup({
+                indent = {
+                    char = "┆",
+                    highlight = highlight,
+                },
+                scope = { enabled = false },
+            })
+        end,
     },
 })
