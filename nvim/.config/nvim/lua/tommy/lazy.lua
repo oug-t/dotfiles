@@ -191,11 +191,12 @@ return require("lazy").setup({
 					{ name = "path" },
 					{ name = "nvim_lua" },
 				},
-				formatting = require("lspkind").cmp_format({
-					mode = "symbol_text",
-					maxwidth = 50,
-					ellipsis_char = "...",
-				}),
+				-- FIX: Remove or fix the formatting line
+				-- formatting = require("lspkind").cmp_format({
+				--     mode = "symbol_text",
+				--     maxwidth = 50,
+				--     ellipsis_char = "...",
+				-- }),
 				mapping = cmp.mapping.preset.insert({
 					["<C-p>"] = cmp.mapping.select_prev_item(cmp_select),
 					["<C-n>"] = cmp.mapping.select_next_item(cmp_select),
