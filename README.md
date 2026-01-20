@@ -51,19 +51,20 @@ The goal is an environment that stays out of the way while still feeling intenti
 ```bash
 git clone [https://github.com/YOUR_USERNAME/dotfiles.git](https://github.com/YOUR_USERNAME/dotfiles.git) ~/dotfiles
 cd ~/dotfiles
-2. Symlink Configurations (Linux / WSL)
+```
+
+### 2. Symlink Configurations (Linux / WSL)
 This repository uses GNU Stow to manage symlinks.
 
-Bash
-
+```Bash
 stow nvim tmux zsh wezterm
+```
 This links all configurations directly into $HOME.
 
-3. Windows ↔ WSL Bridge (WezTerm)
+### 3. Windows ↔ WSL Bridge (WezTerm)
 WezTerm runs on Windows but reads its configuration from WSL. Run PowerShell as Administrator:
 
-PowerShell
-
+```PowerShell
 # Remove existing config
 Remove-Item "C:\Users\YOUR_USER\.config\wezterm" -Recurse -Force
 
@@ -74,6 +75,7 @@ New-Item -ItemType Directory -Path "C:\Users\YOUR_USER\.config\wezterm" -Force
 New-Item -ItemType SymbolicLink `
   -Path "C:\Users\YOUR_USER\.config\wezterm\wezterm.lua" `
   -Target "\\wsl$\archlinux\home\tommy\dotfiles\wezterm\.config\wezterm\wezterm.lua"
+```
 This keeps the terminal UI on Windows and CLI tooling in Linux fully synchronized.
 
 ## 🧊 Key Features
@@ -83,18 +85,12 @@ This keeps the terminal UI on Windows and CLI tooling in Linux fully synchronize
 - **Fast Startup:** Neovim plugins are loaded on demand.
 - **Consistent Nord Styling:** Editor, terminal, tmux, and shell share the same palette.
 
----
-
 ## 📸 Screenshot Details
 
 The screenshot above reflects an actual working session:
 - **Neovim** editing a Rails controller
 - **Tmux** managing logs, calendar, and task panes
 - **WezTerm** providing translucency over a cool-toned wallpaper
-
-*Nothing staged.*
-
----
 
 ## 🧠 Notes
 
@@ -107,4 +103,3 @@ The screenshot above reflects an actual working session:
   <img src="https://img.shields.io/badge/Neovim-57A143?style=for-the-badge&logo=neovim&logoColor=white">
   <img src="https://img.shields.io/badge/WSL-0078D6?style=for-the-badge&logo=windows&logoColor=white">
 </p>
-```
