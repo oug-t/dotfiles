@@ -68,7 +68,13 @@ return require("lazy").setup({
         config = function()
             vim.api.nvim_create_autocmd("BufWritePre", {
                 pattern = { "*.js", "*.jsx", "*.ts", "*.tsx", "*.css", "*.html", "*.json", "*.md", "*.svelte" },
-                callback = function()
+                callback = function(args)
+                    -- Skip SvelteKit app.html (Prettier will always re-add self-closing slashes)
+                    local fullpath = vim.api.nvim_buf_get_name(args.buf)
+                    if fullpath:match("/src/app%.html$") then
+                        return
+                    end
+
                     vim.cmd("PrettierAsync")
                 end,
             })
