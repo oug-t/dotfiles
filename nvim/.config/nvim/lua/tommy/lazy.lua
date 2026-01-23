@@ -272,13 +272,16 @@ return require("lazy").setup({
     },
 
     -- === TREESITTER ===
+    -- === TREESITTER ===
     {
         "nvim-treesitter/nvim-treesitter",
+        -- IMPORTANT: Pin to the "master" branch to use the stable version
+        -- The default branch is now a rewrite that breaks your config style.
+        branch = "master",
+        lazy = false,
         build = ":TSUpdate",
         config = function()
-            local install_dir = vim.fn.stdpath("data") .. "/treesitter-parsers"
-
-            require("nvim-treesitter").setup({
+            require("nvim-treesitter.configs").setup({
                 ensure_installed = {
                     "c",
                     "lua",
@@ -287,7 +290,6 @@ return require("lazy").setup({
                     "python",
                     "ruby",
                     "ocaml",
-
                     "svelte",
                     "typescript",
                     "javascript",
@@ -296,13 +298,13 @@ return require("lazy").setup({
                 },
                 sync_install = false,
                 auto_install = true,
-                highlight = { enable = true },
+                highlight = {
+                    enable = true,
+                    additional_vim_regex_highlighting = false,
+                },
                 indent = { enable = true },
-                parser_install_dir = install_dir,
+                -- REMOVED: parser_install_dir (this was causing the 'nil' crash)
             })
-
-            -- Make Neovim find parsers in that custom directory
-            vim.opt.runtimepath:append(install_dir)
         end,
     },
 
