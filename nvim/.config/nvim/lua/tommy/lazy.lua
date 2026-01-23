@@ -272,29 +272,18 @@ return require("lazy").setup({
     },
 
     -- === TREESITTER ===
-    -- === TREESITTER ===
     {
         "nvim-treesitter/nvim-treesitter",
-        -- IMPORTANT: Pin to the "master" branch to use the stable version
-        -- The default branch is now a rewrite that breaks your config style.
-        branch = "master",
+        -- Pin to a stable commit that works with v0.11.x
+        commit = "42666d4",
         lazy = false,
         build = ":TSUpdate",
         config = function()
             require("nvim-treesitter.configs").setup({
                 ensure_installed = {
-                    "c",
-                    "lua",
-                    "vim",
-                    "vimdoc",
-                    "python",
-                    "ruby",
-                    "ocaml",
-                    "svelte",
-                    "typescript",
-                    "javascript",
-                    "html",
-                    "css",
+                    "c", "lua", "vim", "vimdoc", "python", "ruby",
+                    "ocaml", "svelte", "typescript", "javascript",
+                    "html", "css",
                 },
                 sync_install = false,
                 auto_install = true,
@@ -303,7 +292,6 @@ return require("lazy").setup({
                     additional_vim_regex_highlighting = false,
                 },
                 indent = { enable = true },
-                -- REMOVED: parser_install_dir (this was causing the 'nil' crash)
             })
         end,
     },
@@ -376,6 +364,15 @@ return require("lazy").setup({
                     padding = 2,
                     border = "rounded",
                 },
+            })
+
+            vim.api.nvim_create_autocmd("BufEnter", {
+                desc = "Force Treesitter to attach",
+                callback = function()
+                    if vim.bo.filetype ~= "" and vim.bo.filetype ~= "oil" then
+                        local ok = pcall(vim.treesitter.start)
+                    end
+                end,
             })
         end,
     },
