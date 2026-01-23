@@ -102,7 +102,6 @@ return require("lazy").setup({
         config = function()
             local lsp_zero = require("lsp-zero")
 
-            -- 1. Attach Logic
             lsp_zero.on_attach(function(client, bufnr)
                 lsp_zero.default_keymaps({ buffer = bufnr })
 

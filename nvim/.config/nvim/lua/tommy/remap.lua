@@ -3,32 +3,26 @@ vim.g.mapleader = " "
 -- === OIL FILE MANAGER ===
 -- Map "-" to open parent directory (Standard vinegar style)
 vim.keymap.set("n", "-", function()
-	require("oil").open()
+    require("oil").open()
 end, { desc = "Open Oil File Manager" })
 
--- Map "<leader>pv" to open Oil (Your preferred style)
 vim.keymap.set("n", "<leader>pv", function()
-	require("oil").open()
+    require("oil").open()
 end, { desc = "Open Oil File Manager" })
 
--- Move lines when highlighted (Primeagen style)
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '>-2<CR>gv=gv")
 
 vim.keymap.set("n", "J", "mzJ`z")
 
--- Make half page move stay in the middle
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 
--- Keep search in the middle
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
--- Greatest remap ever (Paste without losing register)
 vim.keymap.set("x", "<leader>p", '"_dP')
 
--- Copy to system clipboard
 vim.keymap.set("n", "<leader>y", '"+y')
 vim.keymap.set("v", "<leader>y", '"+y')
 vim.keymap.set("n", "<leader>Y", '"+y')
@@ -39,19 +33,18 @@ vim.keymap.set("v", "<leader>d", '"_d')
 
 -- The only difference between <C-c> and <Esc>
 vim.keymap.set("i", "<C-c>", "<Esc>")
-
 vim.keymap.set("n", "Q", "<nop>")
 
 -- Format buffer (LSP or Vim fallback)
 vim.keymap.set("n", "<leader>f", function()
-	local clients = vim.lsp.get_clients({ bufnr = 0, method = "textDocument/formatting" })
-	if #clients > 0 then
-		vim.lsp.buf.format({ async = false })
-	else
-		local view = vim.fn.winsaveview()
-		vim.cmd("normal! gqap")
-		vim.fn.winrestview(view)
-	end
+    local clients = vim.lsp.get_clients({ bufnr = 0, method = "textDocument/formatting" })
+    if #clients > 0 then
+        vim.lsp.buf.format({ async = false })
+    else
+        local view = vim.fn.winsaveview()
+        vim.cmd("normal! gqap")
+        vim.fn.winrestview(view)
+    end
 end, { desc = "Format buffer (LSP or Vim fallback)" })
 
 -- Quickfix navigation
