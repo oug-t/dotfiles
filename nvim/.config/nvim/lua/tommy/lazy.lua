@@ -274,9 +274,6 @@ return require("lazy").setup({
     -- === TREESITTER ===
     {
         "nvim-treesitter/nvim-treesitter",
-        -- Pin to a stable commit that works with v0.11.x
-        commit = "42666d4",
-        lazy = false,
         build = ":TSUpdate",
         config = function()
             require("nvim-treesitter.configs").setup({
