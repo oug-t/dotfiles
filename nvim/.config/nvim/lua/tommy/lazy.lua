@@ -14,7 +14,6 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- General Settings (C/C++ Fix)
 vim.api.nvim_create_autocmd("FileType", {
     pattern = { "c", "cpp", "h", "hpp" },
     callback = function()
@@ -25,7 +24,25 @@ vim.api.nvim_create_autocmd("FileType", {
     end,
 })
 
--- Format for Lua
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = { "go" },
+    callback = function()
+        vim.opt_local.tabstop = 4
+        vim.opt_local.shiftwidth = 4
+        vim.opt_local.softtabstop = 4
+        vim.opt_local.expandtab = false -- Go standard uses tabs
+    end,
+})
+
+vim.api.nvim_create_autocmd("BufWritePre", {
+    pattern = "*.go",
+    callback = function()
+        local view = vim.fn.winsaveview()
+        vim.lsp.buf.format({ async = false, timeout_ms = 2000 })
+        vim.fn.winrestview(view)
+    end,
+})
+
 vim.api.nvim_create_autocmd("BufWritePre", {
     pattern = "*.lua",
     callback = function()
@@ -136,6 +153,7 @@ return require("lazy").setup({
                     "marksman",
                     "ltex",
                     "ocamllsp",
+                    "gopls",
                 },
                 handlers = {
                     -- Default handler
@@ -281,6 +299,7 @@ return require("lazy").setup({
                     "c", "lua", "vim", "vimdoc", "python", "ruby",
                     "ocaml", "svelte", "typescript", "javascript",
                     "html", "css",
+                    "go", "gomod",
                 },
                 sync_install = false,
                 auto_install = true,
