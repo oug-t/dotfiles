@@ -7,9 +7,8 @@ vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 
 vim.opt.textwidth = 80
-vim.opt.formatoptions:append("t")
 vim.opt.smartindent = true
-vim.opt.formatoptions = "jptcq"
+vim.opt.formatoptions = "jpcq"
 
 vim.opt.swapfile = false
 vim.opt.backup = false
