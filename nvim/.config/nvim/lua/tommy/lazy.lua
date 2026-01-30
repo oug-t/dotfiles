@@ -43,6 +43,14 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     end,
 })
 
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = { "markdown", "text", "gitcommit" },
+    callback = function()
+        vim.opt_local.textwidth = 80
+        vim.opt_local.wrap = true
+    end,
+})
+
 vim.api.nvim_create_autocmd("BufWritePre", {
     pattern = "*.lua",
     callback = function()

@@ -6,9 +6,10 @@ vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 
-vim.opt.textwidth = 80
+vim.opt.textwidth = 0
+vim.opt.wrap = false
 vim.opt.smartindent = true
-vim.opt.formatoptions = "jpcq"
+vim.opt.formatoptions = "j"
 
 vim.opt.swapfile = false
 vim.opt.backup = false
