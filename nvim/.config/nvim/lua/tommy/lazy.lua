@@ -539,9 +539,9 @@ return require("lazy").setup({
     {
         "oug-t/difi.nvim",
         event = "VeryLazy",
-        config = function()
-            -- Optional: Keymap to toggle the diff view manually
-            vim.keymap.set("n", "<leader>df", ":Difi<CR>", { desc = "Toggle Difi" })
-        end
+        keys = {
+            { "<leader>dh", ":Difi<CR>",      desc = "Toggle Difi (HEAD)" },
+            { "<leader>dm", ":Difi main<CR>", desc = "Toggle Difi (main)" },
+        },
     },
 })
