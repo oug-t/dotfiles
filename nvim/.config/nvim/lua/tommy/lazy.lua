@@ -540,8 +540,8 @@ return require("lazy").setup({
         "oug-t/difi.nvim",
         event = "VeryLazy",
         keys = {
-            { "<leader>dh", ":Difi<CR>",      desc = "Toggle Difi (HEAD)" },
-            { "<leader>dm", ":Difi main<CR>", desc = "Toggle Difi (main)" },
+            -- Context-aware: Syncs with CLI target (e.g. main) or defaults to HEAD
+            { "<leader>df", ":Difi<CR>", desc = "Toggle Difi" },
         },
     },
 })
