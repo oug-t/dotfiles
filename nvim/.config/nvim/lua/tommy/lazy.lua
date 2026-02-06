@@ -1,4 +1,4 @@
--- LEADER
+-- Set leader key to space
 vim.g.mapleader = " "
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -55,36 +55,23 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     pattern = "*.lua",
     callback = function()
         local view = vim.fn.winsaveview()
-
         vim.lsp.buf.format({
             async = false,
             timeout_ms = 2000,
         })
-
         vim.fn.winrestview(view)
     end,
 })
 
-
--- 3. Plugin List & Configurations
+-- Plugin List & Configurations
 return require("lazy").setup({
 
-    -- === PRETTIER ===
+    -- Prettier configuration
     {
         "prettier/vim-prettier",
         ft = {
-            "javascript",
-            "typescript",
-            "css",
-            "less",
-            "scss",
-            "json",
-            "graphql",
-            "markdown",
-            "vue",
-            "svelte",
-            "yaml",
-            "html",
+            "javascript", "typescript", "css", "less", "scss", "json",
+            "graphql", "markdown", "vue", "svelte", "yaml", "html",
         },
         init = function()
             vim.g["prettier#autoformat"] = 0
@@ -94,19 +81,17 @@ return require("lazy").setup({
             vim.api.nvim_create_autocmd("BufWritePre", {
                 pattern = { "*.js", "*.jsx", "*.ts", "*.tsx", "*.css", "*.html", "*.json", "*.md", "*.svelte" },
                 callback = function(args)
-                    -- Skip SvelteKit app.html (Prettier will always re-add self-closing slashes)
                     local fullpath = vim.api.nvim_buf_get_name(args.buf)
                     if fullpath:match("/src/app%.html$") then
                         return
                     end
-
                     vim.cmd("PrettierAsync")
                 end,
             })
         end,
     },
 
-    -- === LSP, MASON, CMP (FIXED) ===
+    -- LSP, Mason, CMP
     {
         "VonHeikemen/lsp-zero.nvim",
         branch = "v3.x",
@@ -135,53 +120,29 @@ return require("lazy").setup({
                 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
                 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
                 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, opts)
-                vim.keymap.set(
-                    "n",
-                    "<leader>ld",
-                    require("telescope.builtin").diagnostics,
-                    { desc = "List diagnostics" }
-                )
+                vim.keymap.set("n", "<leader>ld", require("telescope.builtin").diagnostics, { desc = "List diagnostics" })
             end)
 
-            -- 2. Get Capabilities (CRITICAL FIX for autocomplete)
             local capabilities = lsp_zero.get_capabilities()
 
-            -- 3. Mason Setup
             require("mason").setup({})
             require("mason-lspconfig").setup({
                 ensure_installed = {
-                    "clangd",
-                    "eslint",
-                    "lua_ls",
-                    "rust_analyzer",
-                    "pyright",
-                    "jdtls",
-                    "solargraph",
-                    "html",
-                    "marksman",
-                    "ltex",
-                    "ocamllsp",
-                    "gopls",
+                    "clangd", "eslint", "lua_ls", "rust_analyzer", "pyright",
+                    "jdtls", "solargraph", "html", "marksman", "ltex",
+                    "ocamllsp", "gopls",
                 },
                 handlers = {
-                    -- Default handler
                     function(server_name)
-                        local config = {
-                            capabilities = capabilities,
-                        }
+                        local config = { capabilities = capabilities }
 
-                        -- Special configuration for eslint
                         if server_name == "eslint" then
                             config.on_attach = function(client, bufnr)
-                                -- Enable formatting for eslint
                                 client.server_capabilities.documentFormattingProvider = true
                                 client.server_capabilities.documentRangeFormattingProvider = true
-                                -- Call the default on_attach
                                 lsp_zero.default_keymaps({ buffer = bufnr })
                             end
-                            config.settings = {
-                                format = true, -- Enable formatting in eslint
-                            }
+                            config.settings = { format = true }
                         end
 
                         require("lspconfig")[server_name].setup(config)
@@ -207,19 +168,13 @@ return require("lazy").setup({
 
                     ruby_lsp = function()
                         require("lspconfig").ruby_lsp.setup({
-                            capabilities = capabilities, -- Pass capabilities
+                            capabilities = capabilities,
                             init_options = {
                                 formatter = "rubocop",
                                 enabledFeatures = {
-                                    "codeActions",
-                                    "diagnostics",
-                                    "documentHighlights",
-                                    "documentSymbols",
-                                    "formatting",
-                                    "hover",
-                                    "onTypeFormatting",
-                                    "selectionRanges",
-                                    "semanticHighlighting",
+                                    "codeActions", "diagnostics", "documentHighlights",
+                                    "documentSymbols", "formatting", "hover",
+                                    "onTypeFormatting", "selectionRanges", "semanticHighlighting",
                                 },
                             },
                         })
@@ -227,14 +182,13 @@ return require("lazy").setup({
 
                     ocamllsp = function()
                         require("lspconfig").ocamllsp.setup({
-                            capabilities = capabilities, -- Pass capabilities
+                            capabilities = capabilities,
                             cmd = { "ocamllsp" },
                         })
                     end,
                 },
             })
 
-            -- 4. CMP Setup
             local cmp = require("cmp")
             local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
@@ -246,12 +200,6 @@ return require("lazy").setup({
                     { name = "path" },
                     { name = "nvim_lua" },
                 },
-                -- FIX: Remove or fix the formatting line
-                -- formatting = require("lspkind").cmp_format({
-                --     mode = "symbol_text",
-                --     maxwidth = 50,
-                --     ellipsis_char = "...",
-                -- }),
                 mapping = cmp.mapping.preset.insert({
                     ["<C-p>"] = cmp.mapping.select_prev_item(cmp_select),
                     ["<C-n>"] = cmp.mapping.select_next_item(cmp_select),
@@ -268,36 +216,18 @@ return require("lazy").setup({
         end,
     },
 
-    -- === TELESCOPE ===
+    -- Telescope configuration
     {
         "nvim-telescope/telescope.nvim",
         dependencies = { "nvim-lua/plenary.nvim" },
         keys = {
-            {
-                "<leader>pf",
-                function()
-                    require("telescope.builtin").find_files()
-                end,
-                desc = "Find Files",
-            },
-            {
-                "<leader>pg",
-                function()
-                    require("telescope.builtin").git_files()
-                end,
-                desc = "Git Files",
-            },
-            {
-                "<leader>ps",
-                function()
-                    require("telescope.builtin").grep_string({ search = vim.fn.input("Grep > ") })
-                end,
-                desc = "Grep String",
-            },
+            { "<leader>pf", function() require("telescope.builtin").find_files() end,                                      desc = "Find Files" },
+            { "<leader>pg", function() require("telescope.builtin").git_files() end,                                       desc = "Git Files" },
+            { "<leader>ps", function() require("telescope.builtin").grep_string({ search = vim.fn.input("Grep > ") }) end, desc = "Grep String" },
         },
     },
 
-    -- === TREESITTER ===
+    -- Treesitter configuration
     {
         "nvim-treesitter/nvim-treesitter",
         build = ":TSUpdate",
@@ -306,8 +236,7 @@ return require("lazy").setup({
                 ensure_installed = {
                     "c", "lua", "vim", "vimdoc", "python", "ruby",
                     "ocaml", "svelte", "typescript", "javascript",
-                    "html", "css",
-                    "go", "gomod",
+                    "html", "css", "go", "gomod",
                 },
                 sync_install = false,
                 auto_install = true,
@@ -320,7 +249,7 @@ return require("lazy").setup({
         end,
     },
 
-    -- === HARPOON ===
+    -- Harpoon configuration
     {
         "ThePrimeagen/harpoon",
         branch = "harpoon2",
@@ -329,38 +258,21 @@ return require("lazy").setup({
             local harpoon = require("harpoon")
             harpoon:setup()
 
-            vim.keymap.set("n", "<leader>a", function()
-                harpoon:list():add()
-            end)
-            vim.keymap.set("n", "<C-e>", function()
-                harpoon.ui:toggle_quick_menu(harpoon:list())
-            end)
+            vim.keymap.set("n", "<leader>a", function() harpoon:list():add() end)
+            vim.keymap.set("n", "<C-e>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
 
-            -- Dvorak layout bindings (h,t,n,s)
-            vim.keymap.set("n", "<leader>1", function()
-                harpoon:list():select(1)
-            end)
-            vim.keymap.set("n", "<leader>2", function()
-                harpoon:list():select(2)
-            end)
-            vim.keymap.set("n", "<leader>3", function()
-                harpoon:list():select(3)
-            end)
-            vim.keymap.set("n", "<leader>4", function()
-                harpoon:list():select(4)
-            end)
+            -- Dvorak layout bindings
+            vim.keymap.set("n", "<leader>1", function() harpoon:list():select(1) end)
+            vim.keymap.set("n", "<leader>2", function() harpoon:list():select(2) end)
+            vim.keymap.set("n", "<leader>3", function() harpoon:list():select(3) end)
+            vim.keymap.set("n", "<leader>4", function() harpoon:list():select(4) end)
 
-            -- Toggle previous & next buffers
-            vim.keymap.set("n", "<C-S-P>", function()
-                harpoon:list():prev()
-            end)
-            vim.keymap.set("n", "<C-S-N>", function()
-                harpoon:list():next()
-            end)
+            vim.keymap.set("n", "<C-S-P>", function() harpoon:list():prev() end)
+            vim.keymap.set("n", "<C-S-N>", function() harpoon:list():next() end)
         end,
     },
 
-    -- === FILE MANAGER (Oil) ===
+    -- File Manager (Oil)
     {
         "stevearc/oil.nvim",
         dependencies = { "nvim-tree/nvim-web-devicons" },
@@ -375,33 +287,23 @@ return require("lazy").setup({
                     ["<leader>pg"] = false,
                     ["<leader>ps"] = false,
                 },
-                columns = {
-                    "icon",
-                    "permissions",
-                    "size",
-                },
-                view_options = {
-                    show_hidden = true,
-                    natural_order = true,
-                },
-                float = {
-                    padding = 2,
-                    border = "rounded",
-                },
+                columns = { "icon", "permissions", "size" },
+                view_options = { show_hidden = true, natural_order = true },
+                float = { padding = 2, border = "rounded" },
             })
 
             vim.api.nvim_create_autocmd("BufEnter", {
                 desc = "Force Treesitter to attach",
                 callback = function()
                     if vim.bo.filetype ~= "" and vim.bo.filetype ~= "oil" then
-                        local ok = pcall(vim.treesitter.start)
+                        pcall(vim.treesitter.start)
                     end
                 end,
             })
         end,
     },
 
-    -- === COMPETITEST ===
+    -- Competitest
     {
         "xeluxee/competitest.nvim",
         dependencies = "MunifTanjim/nui.nvim",
@@ -415,27 +317,20 @@ return require("lazy").setup({
                     if task.url then
                         local c, p = task.url:match("contest/(%d+)/problem/([%w%p]+)")
                         if c and p then
-                            contest_id = c
-                            problem_id = p
+                            contest_id, problem_id = c, p
                         else
                             c, p = task.url:match("problem/(%d+)/([%w%p]+)")
                             if c and p then
-                                contest_id = c
-                                problem_id = p
+                                contest_id, problem_id = c, p
                             end
                         end
                     end
-
                     if problem_id == task.name then
-                        local p_letter = task.name:match("^(%w+)%.")
-                        if p_letter then
-                            problem_id = p_letter
-                        end
+                        local p = task.name:match("^(%w+)%.")
+                        if p then problem_id = p end
                     end
-
                     return string.format("%s/code/codeforces/%s/%s.%s", home, contest_id, problem_id, file_extension)
                 end,
-
                 received_contest_problems_path = function(task, file_extension)
                     local home = os.getenv("HOME")
                     local contest_id = "unknown_contest"
@@ -453,14 +348,10 @@ return require("lazy").setup({
                     end
                     if problem_id == task.name then
                         local p = task.name:match("^(%w+)%.")
-                        if p then
-                            problem_id = p
-                        end
+                        if p then problem_id = p end
                     end
-
                     return string.format("%s/code/codeforces/%s/%s.%s", home, contest_id, problem_id, file_extension)
                 end,
-
                 template_file = "$(HOME)/code/codeforces/template.rb",
                 received_files_extension = "rb",
                 runner_ui = { interface = "popup" },
@@ -468,7 +359,7 @@ return require("lazy").setup({
         end,
     },
 
-    -- === UTILITIES & GIT ===
+    -- Utilities & Git
     {
         "windwp/nvim-autopairs",
         event = "InsertEnter",
@@ -476,20 +367,20 @@ return require("lazy").setup({
     },
     {
         "mbbill/undotree",
-        keys = {
-            { "<leader>u", vim.cmd.UndotreeToggle, desc = "Toggle UndoTree" },
-        },
+        keys = { { "<leader>u", vim.cmd.UndotreeToggle, desc = "Toggle UndoTree" } },
     },
     {
         "tpope/vim-fugitive",
+        cmd = { "Gvdiffsplit", "Git" },
         keys = {
-            { "<leader>gs", vim.cmd.Git, desc = "Git Status" },
+            { "<leader>gs", vim.cmd.Git,             desc = "Git Status" },
+            { "<leader>dv", "<cmd>Gvdiffsplit!<cr>", desc = "Diff Vertical" },
         },
     },
     "christoomey/vim-tmux-navigator",
     "ThePrimeagen/vim-be-good",
 
-    -- === THEME ===
+    -- Theme
     {
         "EdenEast/nightfox.nvim",
         name = "nightfox",
@@ -510,13 +401,9 @@ return require("lazy").setup({
         event = { "BufReadPre", "BufNewFile" },
         config = function()
             local hooks = require("ibl.hooks")
-
             local highlight = {
-                "NordDeepBlue",
-                "NordMediumBlue",
-                "NordFrostBlue",
-                "NordCyan",
-                "NordLightBlue",
+                "NordDeepBlue", "NordMediumBlue", "NordFrostBlue",
+                "NordCyan", "NordLightBlue",
             }
 
             hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
@@ -528,10 +415,7 @@ return require("lazy").setup({
             end)
 
             require("ibl").setup({
-                indent = {
-                    char = "┆",
-                    highlight = highlight,
-                },
+                indent = { char = "┆", highlight = highlight },
                 scope = { enabled = false },
             })
         end,
