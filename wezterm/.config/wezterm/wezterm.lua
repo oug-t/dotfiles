@@ -39,7 +39,7 @@ wezterm.on('format-tab-title', function(tab, tabs, panes, config, hover, max_wid
     return ""
 end)
 
-config.font = wezterm.font("MesloLGS NF")
+config.font = wezterm.font 'JetBrainsMono Nerd Font'
 config.font_size = 12
 
 config.window_decorations = "RESIZE"
