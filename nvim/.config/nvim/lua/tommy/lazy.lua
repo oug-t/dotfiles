@@ -1,4 +1,3 @@
--- Set leader key to space
 vim.g.mapleader = " "
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -30,7 +29,7 @@ vim.api.nvim_create_autocmd("FileType", {
         vim.opt_local.tabstop = 4
         vim.opt_local.shiftwidth = 4
         vim.opt_local.softtabstop = 4
-        vim.opt_local.expandtab = false -- Go standard uses tabs
+        vim.opt_local.expandtab = false
     end,
 })
 
@@ -55,18 +54,12 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     pattern = "*.lua",
     callback = function()
         local view = vim.fn.winsaveview()
-        vim.lsp.buf.format({
-            async = false,
-            timeout_ms = 2000,
-        })
+        vim.lsp.buf.format({ async = false, timeout_ms = 2000 })
         vim.fn.winrestview(view)
     end,
 })
 
--- Plugin List & Configurations
 return require("lazy").setup({
-
-    -- Prettier configuration
     {
         "prettier/vim-prettier",
         ft = {
@@ -82,16 +75,13 @@ return require("lazy").setup({
                 pattern = { "*.js", "*.jsx", "*.ts", "*.tsx", "*.css", "*.html", "*.json", "*.md", "*.svelte" },
                 callback = function(args)
                     local fullpath = vim.api.nvim_buf_get_name(args.buf)
-                    if fullpath:match("/src/app%.html$") then
-                        return
-                    end
+                    if fullpath:match("/src/app%.html$") then return end
                     vim.cmd("PrettierAsync")
                 end,
             })
         end,
     },
 
-    -- LSP, Mason, CMP
     {
         "VonHeikemen/lsp-zero.nvim",
         branch = "v3.x",
@@ -114,7 +104,6 @@ return require("lazy").setup({
 
             lsp_zero.on_attach(function(client, bufnr)
                 lsp_zero.default_keymaps({ buffer = bufnr })
-
                 local opts = { buffer = bufnr, noremap = true, silent = true }
                 vim.keymap.set("n", ";d", vim.diagnostic.open_float, opts)
                 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
@@ -135,7 +124,6 @@ return require("lazy").setup({
                 handlers = {
                     function(server_name)
                         local config = { capabilities = capabilities }
-
                         if server_name == "eslint" then
                             config.on_attach = function(client, bufnr)
                                 client.server_capabilities.documentFormattingProvider = true
@@ -144,7 +132,6 @@ return require("lazy").setup({
                             end
                             config.settings = { format = true }
                         end
-
                         require("lspconfig")[server_name].setup(config)
                     end,
 
@@ -216,7 +203,6 @@ return require("lazy").setup({
         end,
     },
 
-    -- Telescope configuration
     {
         "nvim-telescope/telescope.nvim",
         dependencies = { "nvim-lua/plenary.nvim" },
@@ -227,7 +213,6 @@ return require("lazy").setup({
         },
     },
 
-    -- Treesitter configuration
     {
         "nvim-treesitter/nvim-treesitter",
         build = ":TSUpdate",
@@ -236,7 +221,7 @@ return require("lazy").setup({
                 ensure_installed = {
                     "c", "lua", "vim", "vimdoc", "python", "ruby",
                     "ocaml", "svelte", "typescript", "javascript",
-                    "html", "css", "go", "gomod",
+                    "html", "css", "go", "gomod", "markdown", "markdown_inline",
                 },
                 sync_install = false,
                 auto_install = true,
@@ -249,7 +234,6 @@ return require("lazy").setup({
         end,
     },
 
-    -- Harpoon configuration
     {
         "ThePrimeagen/harpoon",
         branch = "harpoon2",
@@ -261,7 +245,6 @@ return require("lazy").setup({
             vim.keymap.set("n", "<leader>a", function() harpoon:list():add() end)
             vim.keymap.set("n", "<C-e>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
 
-            -- Dvorak layout bindings
             vim.keymap.set("n", "<leader>1", function() harpoon:list():select(1) end)
             vim.keymap.set("n", "<leader>2", function() harpoon:list():select(2) end)
             vim.keymap.set("n", "<leader>3", function() harpoon:list():select(3) end)
@@ -272,7 +255,6 @@ return require("lazy").setup({
         end,
     },
 
-    -- File Manager (Oil)
     {
         "stevearc/oil.nvim",
         dependencies = { "nvim-tree/nvim-web-devicons" },
@@ -293,7 +275,6 @@ return require("lazy").setup({
             })
 
             vim.api.nvim_create_autocmd("BufEnter", {
-                desc = "Force Treesitter to attach",
                 callback = function()
                     if vim.bo.filetype ~= "" and vim.bo.filetype ~= "oil" then
                         pcall(vim.treesitter.start)
@@ -303,7 +284,6 @@ return require("lazy").setup({
         end,
     },
 
-    -- Competitest
     {
         "xeluxee/competitest.nvim",
         dependencies = "MunifTanjim/nui.nvim",
@@ -359,7 +339,6 @@ return require("lazy").setup({
         end,
     },
 
-    -- Utilities & Git
     {
         "windwp/nvim-autopairs",
         event = "InsertEnter",
@@ -380,7 +359,6 @@ return require("lazy").setup({
     "christoomey/vim-tmux-navigator",
     "ThePrimeagen/vim-be-good",
 
-    -- Theme
     {
         "EdenEast/nightfox.nvim",
         name = "nightfox",
@@ -420,12 +398,34 @@ return require("lazy").setup({
             })
         end,
     },
+
     {
-        "oug-t/difi.nvim",
+        "MeanderingProgrammer/render-markdown.nvim",
+        dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
+        ft = { "markdown" },
+        opts = {},
+    },
+    {
+        "iamcco/markdown-preview.nvim",
+        cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+        ft = { "markdown" },
+        build = function() vim.fn["mkdp#util#install"]() end,
+    },
+    {
+        "HakonHarnes/img-clip.nvim",
         event = "VeryLazy",
-        keys = {
-            -- Context-aware: Syncs with CLI target (e.g. main) or defaults to HEAD
-            { "<leader>df", ":Difi<CR>", desc = "Toggle Difi" },
+        opts = {
+            default = {
+                dir_path = "assets",
+            },
         },
+        keys = {
+            { "<leader>pi", "<cmd>PasteImage<cr>", desc = "Paste image" },
+        },
+    },
+    {
+        "tadmccorkle/markdown.nvim",
+        ft = "markdown",
+        opts = {},
     },
 })
