@@ -120,6 +120,7 @@ return require("lazy").setup({
                     "clangd", "eslint", "lua_ls", "rust_analyzer", "pyright",
                     "jdtls", "solargraph", "html", "marksman", "ltex",
                     "ocamllsp", "gopls",
+                    "sourcekit",
                 },
                 handlers = {
                     function(server_name)
@@ -173,6 +174,13 @@ return require("lazy").setup({
                             cmd = { "ocamllsp" },
                         })
                     end,
+
+                    sourcekit = function()
+                        require("lspconfig").sourcekit.setup({
+                            capabilities = capabilities,
+                            filetypes = { "swift", "objective-c", "objective-cpp" },
+                        })
+                    end,
                 },
             })
 
@@ -222,6 +230,7 @@ return require("lazy").setup({
                     "c", "lua", "vim", "vimdoc", "python", "ruby",
                     "ocaml", "svelte", "typescript", "javascript",
                     "html", "css", "go", "gomod", "markdown", "markdown_inline",
+                    "swift",
                 },
                 sync_install = false,
                 auto_install = true,
@@ -416,6 +425,15 @@ return require("lazy").setup({
         },
         keys = {
             { "<leader>pi", "<cmd>PasteImage<cr>", desc = "Paste image" },
+        },
+    },
+
+    {
+        "dhruvasagar/vim-table-mode",
+        ft = { "markdown", "org" },
+        cmd = "TableModeToggle",
+        keys = {
+            { "<leader>tm", "<cmd>TableModeToggle<cr>", desc = "Toggle Table Mode" },
         },
     },
 })
