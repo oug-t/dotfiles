@@ -61,23 +61,26 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 
 return require("lazy").setup({
     {
-        "prettier/vim-prettier",
-        ft = {
-            "javascript", "typescript", "css", "less", "scss", "json",
-            "graphql", "markdown", "vue", "svelte", "yaml", "html",
-        },
-        init = function()
-            vim.g["prettier#autoformat"] = 0
-            vim.g["prettier#autoformat_require_pragma"] = 0
-        end,
+        "stevearc/conform.nvim",
+        event = "BufWritePre",
         config = function()
-            vim.api.nvim_create_autocmd("BufWritePre", {
-                pattern = { "*.js", "*.jsx", "*.ts", "*.tsx", "*.css", "*.html", "*.json", "*.md", "*.svelte" },
-                callback = function(args)
-                    local fullpath = vim.api.nvim_buf_get_name(args.buf)
-                    if fullpath:match("/src/app%.html$") then return end
-                    vim.cmd("PrettierAsync")
-                end,
+            require("conform").setup({
+                formatters_by_ft = {
+                    javascript = { "prettier" },
+                    typescript = { "prettier" },
+                    javascriptreact = { "prettier" },
+                    typescriptreact = { "prettier" },
+                    svelte = { "prettier" },
+                    css = { "prettier" },
+                    html = { "prettier" },
+                    json = { "prettier" },
+                    yaml = { "prettier" },
+                    markdown = { "prettier" },
+                },
+                format_on_save = {
+                    timeout_ms = 2000,
+                    lsp_fallback = true,
+                },
             })
         end,
     },
@@ -178,7 +181,13 @@ return require("lazy").setup({
                     sourcekit = function()
                         require("lspconfig").sourcekit.setup({
                             capabilities = capabilities,
-                            filetypes = { "swift", "objective-c", "objective-cpp" },
+                            cmd = { "sourcekit-lsp" },
+                            root_dir = require("lspconfig.util").root_pattern(
+                                "Package.swift",
+                                ".git",
+                                "*.xcodeproj",
+                                "*.xcworkspace"
+                            ),
                         })
                     end,
                 },
@@ -421,7 +430,7 @@ return require("lazy").setup({
                 conceallevel = { default = vim.o.conceallevel, rendered = 3 },
             },
         },
-    },
+    }
 
     {
         "HakonHarnes/img-clip.nvim",
