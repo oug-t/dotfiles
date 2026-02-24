@@ -176,19 +176,6 @@ return require("lazy").setup({
                             cmd = { "ocamllsp" },
                         })
                     end,
-
-                    sourcekit = function()
-                        require("lspconfig").sourcekit.setup({
-                            capabilities = capabilities,
-                            cmd = { "sourcekit-lsp" },
-                            root_dir = require("lspconfig.util").root_pattern(
-                                "Package.swift",
-                                ".git",
-                                "*.xcodeproj",
-                                "*.xcworkspace"
-                            ),
-                        })
-                    end,
                 },
             })
 
