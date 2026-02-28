@@ -453,4 +453,36 @@ return require("lazy").setup({
             { "<leader>tm", "<cmd>TableModeToggle<cr>", desc = "Toggle Table Mode" },
         },
     },
+
+    {
+        "lervag/vimtex",
+        lazy = false,
+        init = function()
+            vim.g.vimtex_syntax_enabled = 0
+            vim.g.vimtex_view_method = "skim"
+            vim.g.vimtex_compiler_latexmk = {
+                out_dir = 'build',
+            }
+        end
+    },
+
+    {
+        "L3MON4D3/LuaSnip",
+        version = "v2.*",
+        build = "make install_jsregexp",
+        config = function()
+            local ls = require("luasnip")
+            local s = ls.snippet
+            local i = ls.insert_node
+            local fmta = require("luasnip.extras.fmt").fmta
+
+            ls.config.set_config({ enable_autosnippets = true })
+
+            ls.add_snippets("tex", {
+                s({ trig = "ff", snippetType = "autosnippet" },
+                    fmta("\\frac{<>}{<>}", { i(1), i(2) })
+                ),
+            })
+        end
+    },
 })
