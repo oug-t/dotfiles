@@ -1,0 +1,48 @@
+local my_augroup = vim.api.nvim_create_augroup("NvimCoreSettings", { clear = true })
+
+-- C / C++
+vim.api.nvim_create_autocmd("FileType", {
+    group = my_augroup,
+    pattern = { "c", "cpp", "h", "hpp" },
+    callback = function()
+        vim.opt_local.tabstop = 4
+        vim.opt_local.shiftwidth = 4
+        vim.opt_local.softtabstop = 4
+        vim.opt_local.expandtab = true
+    end,
+})
+
+-- Go
+vim.api.nvim_create_autocmd("FileType", {
+    group = my_augroup,
+    pattern = { "go" },
+    callback = function()
+        vim.opt_local.tabstop = 4
+        vim.opt_local.shiftwidth = 4
+        vim.opt_local.softtabstop = 4
+        vim.opt_local.expandtab = false
+    end,
+})
+
+-- Markdown / Text
+vim.api.nvim_create_autocmd("FileType", {
+    group = my_augroup,
+    pattern = { "markdown", "text", "gitcommit" },
+    callback = function()
+        vim.opt_local.textwidth = 80
+        vim.opt_local.wrap = true
+        if vim.bo.filetype == "markdown" then
+            pcall(vim.treesitter.start)
+        end
+    end,
+})
+
+-- LaTeX
+vim.api.nvim_create_autocmd("FileType", {
+    group = my_augroup,
+    pattern = "tex",
+    callback = function()
+        vim.opt_local.textwidth = 80
+        vim.opt_local.formatoptions:append("t")
+    end,
+})
