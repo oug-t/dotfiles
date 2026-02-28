@@ -446,22 +446,6 @@ return require("lazy").setup({
     },
 
     {
-        "3rd/image.nvim",
-        opts = {
-            backend = "kitty",
-            processor = "magick_rock",
-            integrations = {
-                markdown = { enabled = true },
-            },
-            opts = {
-                max_width = 60,
-                max_height = 10,
-            },
-            tmux_passthrough = true,
-        },
-    },
-
-    {
         "dhruvasagar/vim-table-mode",
         ft = { "markdown", "org" },
         cmd = "TableModeToggle",
