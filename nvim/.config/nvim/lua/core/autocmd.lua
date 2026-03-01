@@ -44,5 +44,6 @@ vim.api.nvim_create_autocmd("FileType", {
     callback = function()
         vim.opt_local.textwidth = 80
         vim.opt_local.formatoptions:append("t")
+        vim.opt_local.formatexpr = "" -- Disables VimTeX's custom formatter
     end,
 })
