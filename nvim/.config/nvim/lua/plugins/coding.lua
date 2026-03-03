@@ -100,13 +100,37 @@ return {
         end,
         keys = {
             { "<leader>mi", ":MoltenInit<CR>",                                                           desc = "Initialize Molten" },
-            { "<leader>e",  ":MoltenEvaluateOperator<CR>",                                               desc = "Evaluate Operator" },
-            { "<leader>rl", ":MoltenEvaluateLine<CR>",                                                   desc = "Evaluate Line" },
+            {
+                "<leader>ra",
+                function()
+                    local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
+                    local start_line = 1
+
+                    for i, line in ipairs(lines) do
+                        if line:match("^# %%") then
+                            local end_line = i - 1
+                            if end_line >= start_line then
+                                vim.cmd("normal! " .. start_line .. "G0V" .. end_line .. "G")
+                                vim.cmd("normal! \27")
+                                vim.cmd("MoltenEvaluateVisual")
+                            end
+                            start_line = i
+                        end
+                    end
+
+                    if start_line <= #lines then
+                        vim.cmd("normal! " .. start_line .. "G0V" .. #lines .. "G")
+                        vim.cmd("normal! \27")
+                        vim.cmd("MoltenEvaluateVisual")
+                    end
+                end,
+                desc = "Run All Cells Separately",
+            },
+            { "<leader>rc", ":?^# %%\\|\\%^<CR>jV/^# %%\\|\\%$<CR>k<Esc>:<C-u>MoltenEvaluateVisual<CR>", desc = "Run Cell" },
             { "<leader>re", ":<C-u>MoltenEvaluateVisual<CR>",                                            mode = "v",                   desc = "Evaluate Visual" },
             { "<leader>md", ":MoltenDelete<CR>",                                                         desc = "Delete Output" },
-            { "<leader>mx", ":MoltenDeinit<CR>",                                                         desc = "Deinit Molten Kernel" },
-            { "<leader>rc", ":?^# %%\\|\\%^<CR>jV/^# %%\\|\\%$<CR>k<Esc>:<C-u>MoltenEvaluateVisual<CR>", desc = "Run Cell" },
             { "<leader>mo", ":noautocmd MoltenEnterOutput<CR>",                                          desc = "Enter Output Window" },
+            { "<leader>mx", ":MoltenDeinit<CR>",                                                         desc = "Deinit Molten Kernel" },
         },
     },
 }

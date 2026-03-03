@@ -15,6 +15,7 @@ return {
                     json = { "prettier" },
                     yaml = { "prettier" },
                     markdown = { "prettier" },
+                    python = { "isort", "black" },
                 },
                 format_on_save = {
                     timeout_ms = 2000,
@@ -112,6 +113,21 @@ return {
                         require("lspconfig").ocamllsp.setup({
                             capabilities = capabilities,
                             cmd = { "ocamllsp" },
+                        })
+                    end,
+
+                    pyright = function()
+                        require("lspconfig").pyright.setup({
+                            capabilities = capabilities,
+                            settings = {
+                                python = {
+                                    analysis = {
+                                        autoSearchPaths = true,
+                                        useLibraryCodeForTypes = true,
+                                        typeCheckingMode = "basic",
+                                    },
+                                },
+                            },
                         })
                     end,
                 },
