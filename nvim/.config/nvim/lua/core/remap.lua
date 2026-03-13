@@ -1,6 +1,6 @@
 vim.g.mapleader = " "
 
--- Oil file manager
+-- oil file manager
 vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
@@ -20,15 +20,15 @@ vim.keymap.set("n", "<leader>y", '"+y')
 vim.keymap.set("v", "<leader>y", '"+y')
 vim.keymap.set("n", "<leader>Y", '"+y')
 
--- Delete to void register
+-- delete to void register
 vim.keymap.set("n", "<leader>d", '"_d')
 vim.keymap.set("v", "<leader>d", '"_d')
 
--- The only difference between <C-c> and <Esc>
+-- difference between <C-c> and <Esc>
 vim.keymap.set("i", "<C-c>", "<Esc>")
 vim.keymap.set("n", "Q", "<nop>")
 
--- Format buffer (LSP or Vim fallback)
+-- format buffer (LSP or Vim fallback)
 vim.keymap.set("n", "<leader>f", function()
     local clients = vim.lsp.get_clients({ bufnr = 0, method = "textDocument/formatting" })
     if #clients > 0 then
@@ -40,19 +40,16 @@ vim.keymap.set("n", "<leader>f", function()
     end
 end, { desc = "Format buffer (LSP or Vim fallback)" })
 
--- Quickfix navigation
+-- quickfix navigation
 vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
 vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
--- Replace word under cursor
+-- replace word under cursor
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
--- Make current file executable
+-- make current file executable
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
--- CompetiTest shortcuts
-vim.keymap.set("n", "<leader>cr", "<cmd>CompetiTest receive problem<cr>", { desc = "Receive Problem" })
-
--- Stay in visual mode while indenting
+-- stay in visual mode while indenting
 vim.keymap.set("v", "<", "<gv")
 vim.keymap.set("v", ">", ">gv")
