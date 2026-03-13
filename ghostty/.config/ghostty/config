@@ -3,6 +3,8 @@ cursor-style = block
 cursor-style-blink = false
 shell-integration-features = no-cursor
 theme = nord
+window-padding-x = 0
+window-padding-y = 0
 background-opacity = 0.92
 
 # Font
