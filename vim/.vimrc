@@ -12,6 +12,7 @@ set number relativenumber
 " File navigation
 nnoremap - :Explore<CR>    
 let g:netrw_liststyle = 3    " use a tree-style view
+let g:netrw_chgwin = 2 
 
 " Search
 set hlsearch ignorecase smartcase
