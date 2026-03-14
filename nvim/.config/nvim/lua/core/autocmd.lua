@@ -1,5 +1,14 @@
 local my_augroup = vim.api.nvim_create_augroup("NvimCoreSettings", { clear = true })
 
+-- Terminal
+vim.api.nvim_create_autocmd('TermOpen', {
+    group = vim.api.nvim_create_augroup('custom-term-open', { clear = true }),
+    callback = function()
+        vim.opt.number = false
+        vim.opt.relativenumber = false
+    end,
+})
+
 -- C / C++
 vim.api.nvim_create_autocmd("FileType", {
     group = my_augroup,

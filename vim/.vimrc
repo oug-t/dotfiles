@@ -41,21 +41,39 @@ nnoremap <S-Right> :vertical resize +2<CR>
 nnoremap <S-Up>    :resize -2<CR>
 nnoremap <S-Down>  :resize +2<CR>
 
-" Terminal
-if has('terminal')
-  tnoremap <Esc> <C-\><C-n>
-  tnoremap <C-h> <C-\><C-n><C-w>h
-  tnoremap <C-j> <C-\><C-n><C-w>j
-  tnoremap <C-k> <C-\><C-n><C-w>k
-  tnoremap <C-l> <C-\><C-n><C-w>l
-  nnoremap <leader>t :botright 10terminal<CR>
-  autocmd TerminalOpen * startinsert
-endif
-
 " Languages 
 autocmd FileType ruby   setlocal ts=2 sw=2 sts=2 et
 autocmd FileType python setlocal ts=4 sw=4 sts=4 et colorcolumn=0
 let g:python_highlight_all = 1
+
+function! TmuxMove(direction)
+    let wnr = winnr()
+    silent! execute 'wincmd ' . a:direction
+    " If the window number didn't change, we are at the edge; tell tmux to move
+    if wnr == winnr()
+        call system('tmux select-pane -' . tr(a:direction, 'hjkl', 'LDUR'))
+    endif
+endfunction
+
+" Navigation (Normal Mode)
+nnoremap <silent> <C-h> :call TmuxMove('h')<CR>
+nnoremap <silent> <C-j> :call TmuxMove('j')<CR>
+nnoremap <silent> <C-k> :call TmuxMove('k')<CR>
+nnoremap <silent> <C-l> :call TmuxMove('l')<CR>
+
+" Terminal
+if has('terminal')
+  tnoremap <Esc> <C-\><C-n>
+
+  tnoremap <silent> <C-h> <C-\><C-n>:call TmuxMove('h')<CR>
+  tnoremap <silent> <C-j> <C-\><C-n>:call TmuxMove('j')<CR>
+  tnoremap <silent> <C-k> <C-\><C-n>:call TmuxMove('k')<CR>
+  tnoremap <silent> <C-l> <C-\><C-n>:call TmuxMove('l')<CR>
+
+  nnoremap <leader>t :botright 10terminal<CR>
+  
+  autocmd TerminalOpen * setlocal nonumber norelativenumber | startinsert
+endif
 
 " Colorscheme
 colorscheme zaibatsu

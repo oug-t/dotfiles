@@ -3,9 +3,9 @@ return {
         "nvim-telescope/telescope.nvim",
         dependencies = { "nvim-lua/plenary.nvim" },
         keys = {
-            { "<leader>pf", function() require("telescope.builtin").find_files() end,                                      desc = "Find Files" },
-            { "<leader>pg", function() require("telescope.builtin").git_files() end,                                       desc = "Git Files" },
-            { "<leader>ps", function() require("telescope.builtin").grep_string({ search = vim.fn.input("Grep > ") }) end, desc = "Grep String" },
+            { "<leader>ff", function() require("telescope.builtin").find_files() end,                                      desc = "Find Files" },
+            { "<leader>fs", function() require("telescope.builtin").grep_string({ search = vim.fn.input("Grep > ") }) end, desc = "Grep String" },
+            { "<leader>fg", function() require("telescope.builtin").git_files() end,                                       desc = "Git Files" },
         },
     },
     {
@@ -38,10 +38,10 @@ return {
             vim.keymap.set("n", "<leader>a", function() harpoon:list():add() end)
             vim.keymap.set("n", "<C-e>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
 
-            vim.keymap.set("n", "<leader>1", function() harpoon:list():select(1) end)
-            vim.keymap.set("n", "<leader>2", function() harpoon:list():select(2) end)
-            vim.keymap.set("n", "<leader>3", function() harpoon:list():select(3) end)
-            vim.keymap.set("n", "<leader>4", function() harpoon:list():select(4) end)
+            vim.keymap.set("n", "<leader>q", function() harpoon:list():select(1) end)
+            vim.keymap.set("n", "<leader>w", function() harpoon:list():select(2) end)
+            vim.keymap.set("n", "<leader>e", function() harpoon:list():select(3) end)
+            vim.keymap.set("n", "<leader>r", function() harpoon:list():select(4) end)
 
             vim.keymap.set("n", "<C-S-P>", function() harpoon:list():prev() end)
             vim.keymap.set("n", "<C-S-N>", function() harpoon:list():next() end)

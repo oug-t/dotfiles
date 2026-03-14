@@ -1,0 +1,16 @@
+# Deep Learning
+numpy
+matplotlib
+torch
+torchvision
+scipy
+
+# IPython
+ipython
+
+# Utilities
+tqdm
+pathlib
+
+# Format
+ruff

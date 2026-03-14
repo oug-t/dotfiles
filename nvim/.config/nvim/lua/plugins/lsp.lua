@@ -15,7 +15,7 @@ return {
                     json = { "prettier" },
                     yaml = { "prettier" },
                     markdown = { "prettier" },
-                    python = { "isort", "black" },
+                    python = { "ruff_fix", "ruff_organize_imports", "ruff_format" },
                 },
                 format_on_save = {
                     timeout_ms = 2000,
@@ -55,7 +55,6 @@ return {
                 vim.keymap.set("n", ";d", vim.diagnostic.open_float, opts)
                 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
                 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
-                vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, opts)
                 vim.keymap.set("n", "<leader>ld", require("telescope.builtin").diagnostics, { desc = "List diagnostics" })
             end)
 
