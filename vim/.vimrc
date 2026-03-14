@@ -18,6 +18,12 @@ let g:netrw_banner = 0     " keeps it clean
 set hlsearch ignorecase smartcase
 nnoremap <silent> <C-[> :nohlsearch<CR>
 
+" System clipboard
+nnoremap <Space>y "+y
+vnoremap <Space>y "+y
+nnoremap <Space>p "+p
+vnoremap <Space>p "+p
+
 " Indentation 
 set expandtab tabstop=4 shiftwidth=4 softtabstop=4
 set autoindent smartindent
@@ -64,14 +70,10 @@ nnoremap <silent> <C-l> :call TmuxMove('l')<CR>
 " Terminal
 if has('terminal')
   tnoremap <Esc> <C-\><C-n>
-
   tnoremap <silent> <C-h> <C-\><C-n>:call TmuxMove('h')<CR>
   tnoremap <silent> <C-j> <C-\><C-n>:call TmuxMove('j')<CR>
   tnoremap <silent> <C-k> <C-\><C-n>:call TmuxMove('k')<CR>
   tnoremap <silent> <C-l> <C-\><C-n>:call TmuxMove('l')<CR>
-
-  nnoremap <leader>t :botright 10terminal<CR>
-  
   autocmd TerminalOpen * setlocal nonumber norelativenumber | startinsert
 endif
 
