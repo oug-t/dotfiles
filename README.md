@@ -1,15 +1,11 @@
 # dotfiles
 
-> "I tried multiple times finding an editor that is more modern and does fancy
-> things like colorize my source code..."
-> — _Linus Torvalds_
+> **"Unix is simple. It just takes a genius to understand its simplicity."**
+> — _Dennis Ritchie_
+>
+> `[ Edited in ed. Written in C. Shipped on a PDP-11 — the way the world was made. ]`
 
-> "Syntax highlighting is juvenile. When I was a child, I was taught that it's
-> better to read, not to look at the pictures." — Rob Pike
-
-[![Target: uemacs](https://img.shields.io/badge/target-uemacs-blue?style=flat-square&logo=gnuemacs&logoColor=white)](https://github.com/torvalds/uemacs)
-
-![Setup](assets/torvalds_setup.webp)
+![Ritchie and Thompson at the PDP-11](assets/unix-creators.jpg)
 
 ## Management
 
