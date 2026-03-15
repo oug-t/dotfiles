@@ -1,3 +1,6 @@
+# System
+macos-option-as-alt = true
+
 # Appearance
 cursor-style = block
 cursor-style-blink = false
@@ -11,5 +14,3 @@ background-opacity = 0.92
 # Font
 font-family = "JetBrainsMono Nerd Font"
 font-size = 15
-
-

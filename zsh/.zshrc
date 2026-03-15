@@ -80,3 +80,5 @@ export FZF_DEFAULT_OPTS="
     --height 40% --layout=reverse --border
     --preview 'if [ -d {} ]; then eza --tree --color=always {} | head -200; else bat --color=always --line-range :500 {}; fi'
 "
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
