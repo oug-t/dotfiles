@@ -31,6 +31,7 @@ bindkey '^[[B' history-search-forward
 
 # Aliases
 alias c="clear"
+alias ..="cd .."
 alias brewall="(brew update && brew upgrade && brew cleanup && brew doctor)"
 alias vi="nvim"
 alias ls="eza --icons"
@@ -38,6 +39,11 @@ alias ll="eza -lh --icons --git"
 alias la="eza -lah --icons --git"
 alias tree="eza --tree --icons"
 alias ipy="ipython"
+
+# Zsh
+autoload -Uz compinit && compinit
+zstyle ':completion:*' menu select
+zstyle ':completion:*' list-colors ''
 
 # Plugins (Homebrew)
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
