@@ -2,7 +2,6 @@
 cursor-style = block
 cursor-style-blink = false
 shell-integration-features = no-cursor
-theme = Nord
 window-padding-x = 10
 window-padding-y = 10
 window-padding-color = "extend"
@@ -10,5 +9,8 @@ window-padding-color = "extend"
 # Font
 font-family = "JetBrainsMono Nerd Font"
 
-# OS
+# OS Specifics
 config-file = ?system.conf
+
+# Load active theme (The local state file)
+config-file = active-theme.conf

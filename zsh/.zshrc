@@ -34,6 +34,32 @@ alias la="eza -lah --icons --git"
 alias tree="eza --tree --icons"
 alias ipy="ipython"
 
+# "Love is the death of duty." — Leave the colors behind.
+mode_toggle() {
+    local theme=$1
+    local quote=$2
+    local prompt=$3
+    local target="$HOME/.config/ghostty/active-theme.conf"
+
+    echo -e "\n$quote"
+    echo "theme = $theme" > "$target"
+
+    if [[ "$theme" == "stark-monochrome" ]]; then
+        echo "background-opacity = 1.0" >> "$target"
+    else
+        echo "background-opacity = 0.92" >> "$target"
+    fi
+
+    echo -n "$prompt [y/n]: "
+    read -k 1 res
+    echo ""
+    
+    [[ "$res" == "y" ]] && ghostty >/dev/null 2>&1 &!
+}
+
+alias stark="mode_toggle stark-monochrome 'Kill the boy. 🐺' 'Let the man be born? 🛡️'"
+alias nord="mode_toggle Nord 'Winter is coming. ❄️' 'Now my watch begins? 🕯️'"
+
 # Zsh
 autoload -Uz compinit && compinit
 zstyle ':completion:*' menu select
