@@ -16,11 +16,6 @@ export PATH="$HOME/.config/emacs/bin:$PATH"
 export LDFLAGS="-L/opt/homebrew/opt/ruby/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/ruby/include"
 
-# Oh My Zsh
-export ZSH="$HOME/.oh-my-zsh"
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting web-search)
-source $ZSH/oh-my-zsh.sh
-
 # History & Shell Options
 HISTFILE=$HOME/.zhistory
 SAVEHIST=1000
