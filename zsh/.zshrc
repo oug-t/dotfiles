@@ -50,19 +50,13 @@ mode_toggle() {
     if [[ "$res" == "y" ]]; then
         echo "theme = $theme" > "$target"
 
-        if [[ "$theme" == "stark-monochrome" ]]; then
-            echo "background-opacity = 1.0" >> "$target"
-        else
-            echo "background-opacity = 0.92" >> "$target"
-        fi
-
         # Force the current instance to reload
         if [[ "$(uname)" == "Darwin" ]]; then
             # macOS
             osascript -e 'tell application "System Events" to tell process "Ghostty" to keystroke "," using {command down, shift down}' >/dev/null 2>&1
         else
             # Fedora
-            killall -USR1 ghostty >/dev/null 2>&1
+            killall -USR2 ghostty >/dev/null 2>&1
         fi
     fi
 }
