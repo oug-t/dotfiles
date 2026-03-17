@@ -113,5 +113,6 @@ hi SignColumn   ctermbg=Black guibg=#000000
 hi EndOfBuffer  ctermbg=Black guibg=#000000
 hi LineNr       ctermfg=White guifg=#FFFFFF
 hi CursorLineNr ctermfg=White guifg=#FFFFFF gui=bold
-hi Search   ctermfg=Black ctermbg=White guifg=#000000 guibg=#FFFFFF
-hi IncSearch ctermfg=Black ctermbg=White guifg=#000000 guibg=#FFFFFF
+hi Pmenu      ctermfg=Black ctermbg=White guifg=#000000 guibg=#FFFFFF
+hi PmenuSel   ctermfg=White ctermbg=Black guifg=#FFFFFF guibg=#000000 gui=reverse
+hi MatchParen ctermfg=Black ctermbg=White guifg=#000000 guibg=#FFFFFF
