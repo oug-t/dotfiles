@@ -43,22 +43,31 @@ mode_toggle() {
     local target="$HOME/.config/ghostty/active-theme.conf"
 
     echo -e "\n$quote"
-    echo "theme = $theme" > "$target"
-
-    if [[ "$theme" == "stark-monochrome" ]]; then
-        echo "background-opacity = 1.0" >> "$target"
-    else
-        echo "background-opacity = 0.92" >> "$target"
-    fi
-
     echo -n "$prompt [y/n]: "
     read -k 1 res
     echo ""
     
-    [[ "$res" == "y" ]] && ghostty >/dev/null 2>&1 &!
+    if [[ "$res" == "y" ]]; then
+        echo "theme = $theme" > "$target"
+
+        if [[ "$theme" == "stark-monochrome" ]]; then
+            echo "background-opacity = 1.0" >> "$target"
+        else
+            echo "background-opacity = 0.92" >> "$target"
+        fi
+
+        # Force the current instance to reload
+        if [[ "$(uname)" == "Darwin" ]]; then
+            # macOS
+            osascript -e 'tell application "System Events" to tell process "Ghostty" to keystroke "," using {command down, shift down}' >/dev/null 2>&1
+        else
+            # Fedora
+            killall -USR1 ghostty >/dev/null 2>&1
+        fi
+    fi
 }
 
-alias stark="mode_toggle stark-monochrome 'Kill the boy. 🐺' 'Let the man be born? 🛡️'"
+alias stark="mode_toggle stark-monochrome 'Kill the boy. 🐺' 'Now my watch begins? 🕯️'"
 alias nord="mode_toggle Nord 'Winter is coming. ❄️' 'Now my watch begins? 🕯️'"
 
 # Zsh
