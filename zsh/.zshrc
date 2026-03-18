@@ -123,3 +123,7 @@ export FZF_CTRL_T_OPTS="--preview 'if [ -d {} ]; then eza --tree --color=always 
 export FZF_CTRL_R_OPTS="--preview 'echo {2..} | bat --color=always --style=plain --language=sh' --preview-window=down:3:wrap:hidden"
 export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+if (( $+commands[fzf] )); then
+  source <(fzf --zsh)
+fi
