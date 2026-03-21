@@ -133,7 +133,10 @@ elif [[ "$OS" == "Linux" ]]; then
     export PATH="$HOME/.cargo/bin:$PATH"
 
     alias vim="vimx"
-    alias sysupdate="sudo dnf upgrade --refresh -y"
+    alias dup="sudo dnf upgrade --refresh"
+    alias ku="qemu-system-x86_64 -m 4G -smp 4 -cpu host -accel kvm -hda ~/vms/kali/kali-disk.qcow2 -display none -nic user,model=virtio,hostfwd=tcp::2222-:22 &"
+    alias kg="qemu-system-x86_64 -m 4G -smp 4 -cpu host -accel kvm -hda ~/vms/kali/kali-disk.qcow2 -device intel-hda -device hda-duplex -device virtio-vga-gl -display gtk,gl=on -nic user,model=virtio,hostfwd=tcp::2222-:22 &"
+    alias kd="ssh kali 'sudo poweroff'"
 
     source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
     source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
