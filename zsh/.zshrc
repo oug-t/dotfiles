@@ -155,8 +155,12 @@ fi
 # Tools
 eval "$(zoxide init zsh)"
 
-# Starship
-[ -f ~/.starship_active ] && source ~/.starship_active
+# Sync Starship theme on every new prompt
+autoload -Uz add-zsh-hook
+_sync_starship() {
+    [ -f ~/.starship_active ] && source ~/.starship_active
+}
+add-zsh-hook precmd _sync_starship
 eval "$(starship init zsh)"
 
 # fzf
