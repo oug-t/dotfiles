@@ -54,11 +54,6 @@ return {
         end,
     },
     {
-        "windwp/nvim-autopairs",
-        event = "InsertEnter",
-        config = true,
-    },
-    {
         "L3MON4D3/LuaSnip",
         version = "v2.*",
         build = "make install_jsregexp",

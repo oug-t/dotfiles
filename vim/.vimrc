@@ -37,10 +37,10 @@ nnoremap <leader>\| :vsplit<CR>
 nnoremap <leader>- :split<CR>
 
 " Resize windows with Space + hjkl (10 units)
-nnoremap <leader>h :vertical resize -10<CR>
-nnoremap <leader>l :vertical resize +10<CR>
-nnoremap <leader>k :resize -10<CR>
-nnoremap <leader>j :resize +10<CR>
+nnoremap <expr> <leader>k (winnr() == winnr('j') ? ':resize +10<CR>' : ':resize -10<CR>')
+nnoremap <expr> <leader>j (winnr() == winnr('j') ? ':resize -10<CR>' : ':resize +10<CR>')
+nnoremap <expr> <leader>h (winnr() == winnr('l') ? ':vertical resize +10<CR>' : ':vertical resize -10<CR>')
+nnoremap <expr> <leader>l (winnr() == winnr('l') ? ':vertical resize -10<CR>' : ':vertical resize +10<CR>')
 
 " Languages 
 autocmd FileType ruby   setlocal ts=2 sw=2 sts=2 et
