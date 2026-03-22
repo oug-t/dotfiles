@@ -85,6 +85,16 @@ mode_toggle() {
 
         echo "theme = $theme" > "$target"
 
+        local starship_active="$HOME/.starship_active"
+
+        if [[ "$theme" == "Nord" ]]; then
+            echo "export STARSHIP_CONFIG=\"$HOME/.config/starship/starship-nord.toml\"" > "$starship_active"
+        else
+            echo "export STARSHIP_CONFIG=\"$HOME/.config/starship/starship-stark.toml\"" > "$starship_active"
+        fi
+
+        source "$starship_active"
+
         # Force the current instance to reload
         if [[ "$(uname)" == "Darwin" ]]; then
             osascript -e 'tell application "System Events" to tell process "Ghostty" to keystroke "," using {command down, shift down}' >/dev/null 2>&1
@@ -144,6 +154,9 @@ fi
 
 # Tools
 eval "$(zoxide init zsh)"
+
+# Starship
+[ -f ~/.starship_active ] && source ~/.starship_active
 eval "$(starship init zsh)"
 
 # fzf
