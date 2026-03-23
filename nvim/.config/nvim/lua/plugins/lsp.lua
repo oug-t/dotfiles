@@ -189,9 +189,6 @@ return {
             },
             abbreviations = {
                 enable = true,
-                extra = {
-                    wknight = '♘',
-                },
                 leader = '\\',
             },
             infoview = {
@@ -209,8 +206,8 @@ return {
                 priority = 10,
             },
             goal_markers = {
-                unsolved = ' ⚒ ',
-                accomplished = '🎉',
+                unsolved = '⊢ ',
+                accomplished = '∎ ',
             },
             stderr = {
                 enable = true,

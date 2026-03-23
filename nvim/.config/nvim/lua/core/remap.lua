@@ -62,3 +62,6 @@ vim.keymap.set("n", "<space>st", function()
     vim.cmd.wincmd("J")
     vim.api.nvim_win_set_height(0, 10)
 end)
+
+-- Lean
+vim.keymap.set('n', '<leader>i', function() require('lean.infoview').toggle() end, { desc = 'Toggle Lean Infoview' })
