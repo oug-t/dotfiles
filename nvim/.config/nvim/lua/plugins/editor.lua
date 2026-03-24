@@ -1,14 +1,14 @@
 return {
     {
         "nvim-telescope/telescope.nvim",
-        dependencies = { 
+        dependencies = {
             "nvim-lua/plenary.nvim",
             { "nvim-telescope/telescope-fzf-native.nvim", build = "make" }
         },
         keys = {
-            { "<leader>ff", function() require("telescope.builtin").find_files({ hidden = true }) end,      desc = "Find Files" },
-            { "<leader>fs", function() require("telescope.builtin").grep_string({ search = vim.fn.input("Grep > ") }) end, desc = "Grep String" },
-            { "<leader>fg", function() require("telescope.builtin").git_files() end,                        desc = "Git Files" },
+            { "<leader>ff", function() require("telescope.builtin").find_files({ hidden = true }) end, desc = "Find Files" },
+            { "<leader>fs", function() require("telescope.builtin").live_grep() end,                   desc = "Live Grep" },
+            { "<leader>fc", function() require("telescope.builtin").git_commits() end,                 desc = "Git Commits" },
         },
         config = function()
             require("telescope").setup({
@@ -95,7 +95,8 @@ return {
         cmd = { "Gvdiffsplit", "Git" },
         keys = {
             { "<leader>gs", vim.cmd.Git,             desc = "Git Status" },
-            { "<leader>dv", "<cmd>Gvdiffsplit!<cr>", desc = "Diff Vertical" },
+            { "<leader>gd", "<cmd>Gvdiffsplit!<cr>", desc = "Git Diff Vertical" },
+            { "<leader>gb", "<cmd>Git blame<cr>",    desc = "Git Blame" },
         },
     },
 }
