@@ -33,23 +33,17 @@ vim.api.nvim_create_autocmd("FileType", {
     end,
 })
 
--- LaTeX / Markdown
+-- LaTex \ Markdown
 vim.api.nvim_create_autocmd("FileType", {
-    pattern = { "tex", "markdown" },
+    pattern = { "tex", "latex", "markdown" },
     callback = function()
-        vim.opt_local.textwidth = 80
-        vim.opt_local.formatoptions = "tcqja"
-    end,
-})
-
--- LaTeX
-vim.api.nvim_create_autocmd("FileType", {
-    group = my_augroup,
-    pattern = "tex",
-    callback = function()
-        vim.opt_local.textwidth = 80
-        vim.opt_local.formatoptions:append("t")
-        vim.opt_local.formatexpr = "" -- Disables VimTeX's custom formatter
+        vim.opt_local.textwidth = 0
+        vim.opt_local.wrap = true
+        vim.opt_local.linebreak = true
+        vim.opt_local.spell = true
+        vim.opt_local.spelllang = { "en_us" }
+        vim.keymap.set('n', 'j', 'gj', { buffer = true })
+        vim.keymap.set('n', 'k', 'gk', { buffer = true })
     end,
 })
 
