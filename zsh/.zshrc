@@ -34,6 +34,7 @@ alias ll="eza -lh --icons --git"
 alias la="eza -lah --icons --git"
 alias tree="eza --tree --icons"
 alias ipy="ipython"
+alias brewall="(brew update && brew upgrade && brew cleanup && brew doctor)"
 
 mode_toggle() {
     local theme=$1
@@ -120,7 +121,6 @@ if [[ "$OS" == "Darwin" ]]; then
     export LDFLAGS="-L/opt/homebrew/opt/ruby/lib"
     export CPPFLAGS="-I/opt/homebrew/opt/ruby/include"
 
-    alias brewall="(brew update && brew upgrade && brew cleanup && brew doctor)"
     alias matlab='/Applications/MATLAB_R2025b.app/bin/matlab'
 
     source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
@@ -142,6 +142,10 @@ if [[ "$OS" == "Darwin" ]]; then
 elif [[ "$OS" == "Linux" ]]; then
     export PATH="$HOME/.cargo/bin:$PATH"
     export PATH="$HOME/.elan/bin:$PATH"
+
+    if [ -d "/home/linuxbrew/.linuxbrew" ]; then
+        eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+    fi
 
     alias vim="vimx"
     alias dup="sudo dnf upgrade --refresh"
