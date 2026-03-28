@@ -13,4 +13,4 @@ font-family = "JetBrainsMono Nerd Font Mono"
 config-file = ?system.conf
 
 # Theme
-theme = black-metal
+theme = black-metal-dark-funeral
