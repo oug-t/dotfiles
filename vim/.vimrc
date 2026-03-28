@@ -60,9 +60,14 @@ endif
 
 " fzf
 nnoremap <leader>ff :FZF<CR>
+autocmd BufEnter * if &buftype != 'terminal' | setlocal number relativenumber | endif
 
 " Clipboard
-set clipboard=unnamedplus
+if has("mac")
+    set clipboard=unnamed
+else
+    set clipboard=unnamedplus
+endif
 
 if executable('wl-copy')
     let g:clipboard = {
