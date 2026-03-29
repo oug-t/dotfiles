@@ -26,14 +26,14 @@ vim.keymap.set("n", "Q", "<nop>")
 
 -- Format buffer (LSP or Vim fallback)
 vim.keymap.set("n", "<leader>f", function()
-    local clients = vim.lsp.get_clients({ bufnr = 0, method = "textDocument/formatting" })
-    if #clients > 0 then
-        vim.lsp.buf.format({ async = false })
-    else
-        local view = vim.fn.winsaveview()
-        vim.cmd("normal! gqap")
-        vim.fn.winrestview(view)
-    end
+	local clients = vim.lsp.get_clients({ bufnr = 0, method = "textDocument/formatting" })
+	if #clients > 0 then
+		vim.lsp.buf.format({ async = false })
+	else
+		local view = vim.fn.winsaveview()
+		vim.cmd("normal! gqap")
+		vim.fn.winrestview(view)
+	end
 end, { desc = "Format buffer (LSP or Vim fallback)" })
 
 -- Quickfix navigation
@@ -50,18 +50,49 @@ vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 vim.keymap.set("v", "<", "<gv")
 vim.keymap.set("v", ">", ">gv")
 
--- Terminal
-vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]])
-vim.keymap.set('n', '<leader>h', ':vertical resize -10<CR>', { silent = true })
-vim.keymap.set('n', '<leader>l', ':vertical resize +10<CR>', { silent = true })
-vim.keymap.set('n', '<leader>k', ':resize -10<CR>', { silent = true })
-vim.keymap.set('n', '<leader>j', ':resize +10<CR>', { silent = true })
+-- Split windows
+vim.keymap.set("n", "<leader>|", vim.cmd.vsplit)
+vim.keymap.set("n", "<leader>-", vim.cmd.split)
+
+-- Resize windows with Space + hjkl (10 units)
+vim.keymap.set("n", "<leader>h", function()
+	if vim.fn.winnr() == vim.fn.winnr('l') then
+		vim.cmd("vertical resize +10")
+	else
+		vim.cmd("vertical resize -10")
+	end
+end, { desc = "Move window border left" })
+
+vim.keymap.set("n", "<leader>l", function()
+	if vim.fn.winnr() == vim.fn.winnr('l') then
+		vim.cmd("vertical resize -10")
+	else
+		vim.cmd("vertical resize +10")
+	end
+end, { desc = "Move window border right" })
+
+vim.keymap.set("n", "<leader>k", function()
+	if vim.fn.winnr() == vim.fn.winnr('j') then
+		vim.cmd("resize +10")
+	else
+		vim.cmd("resize -10")
+	end
+end, { desc = "Move window border up" })
+
+vim.keymap.set("n", "<leader>j", function()
+	if vim.fn.winnr() == vim.fn.winnr('j') then
+		vim.cmd("resize -10")
+	else
+		vim.cmd("resize +10")
+	end
+end, { desc = "Move window border down" })
+
+-- Small terminal
 vim.keymap.set("n", "<space>st", function()
-    vim.cmd.vnew()
-    vim.cmd.term()
-    vim.cmd.wincmd("J")
-    vim.api.nvim_win_set_height(0, 10)
-end)
+	vim.cmd("botright 10split")
+	vim.cmd("terminal")
+	vim.cmd.startinsert()
+end, { desc = "Open bottom terminal" })
 
 -- Lean
 vim.keymap.set('n', '<leader>i', function() require('lean.infoview').toggle() end, { desc = 'Toggle Lean Infoview' })
