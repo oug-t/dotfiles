@@ -66,6 +66,13 @@ return {
 				view_options = { show_hidden = true, natural_order = true },
 				float = { padding = 2, border = "rounded" },
 			})
+
+			vim.api.nvim_create_autocmd("FileType", {
+				pattern = "oil",
+				callback = function()
+					vim.cmd("syntax on")
+				end,
+			})
 		end,
 	},
 	{
