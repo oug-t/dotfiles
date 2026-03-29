@@ -54,45 +54,45 @@ vim.keymap.set("v", ">", ">gv")
 vim.keymap.set("n", "<leader>|", vim.cmd.vsplit)
 vim.keymap.set("n", "<leader>-", vim.cmd.split)
 
--- Resize windows with Space + hjkl (10 units)
+-- Navigate split windows
+vim.keymap.set("t", "<C-h>", [[<C-\><C-n><C-w>h]])
+vim.keymap.set("t", "<C-j>", [[<C-\><C-n><C-w>j]])
+vim.keymap.set("t", "<C-k>", [[<C-\><C-n><C-w>k]])
+vim.keymap.set("t", "<C-l>", [[<C-\><C-n><C-w>l]])
+vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]])
+
+-- Resize windows
 vim.keymap.set("n", "<leader>h", function()
-	if vim.fn.winnr() == vim.fn.winnr('l') then
+	if vim.fn.winnr() == vim.fn.winnr("l") then
 		vim.cmd("vertical resize +10")
 	else
 		vim.cmd("vertical resize -10")
 	end
-end, { desc = "Move window border left" })
+end, { desc = "Resize window left" })
 
 vim.keymap.set("n", "<leader>l", function()
-	if vim.fn.winnr() == vim.fn.winnr('l') then
+	if vim.fn.winnr() == vim.fn.winnr("l") then
 		vim.cmd("vertical resize -10")
 	else
 		vim.cmd("vertical resize +10")
 	end
-end, { desc = "Move window border right" })
+end, { desc = "Resize window right" })
 
 vim.keymap.set("n", "<leader>k", function()
-	if vim.fn.winnr() == vim.fn.winnr('j') then
+	if vim.fn.winnr() == vim.fn.winnr("j") then
 		vim.cmd("resize +10")
 	else
 		vim.cmd("resize -10")
 	end
-end, { desc = "Move window border up" })
+end, { desc = "Resize window up" })
 
 vim.keymap.set("n", "<leader>j", function()
-	if vim.fn.winnr() == vim.fn.winnr('j') then
+	if vim.fn.winnr() == vim.fn.winnr("j") then
 		vim.cmd("resize -10")
 	else
 		vim.cmd("resize +10")
 	end
-end, { desc = "Move window border down" })
-
--- Small terminal
-vim.keymap.set("n", "<space>st", function()
-	vim.cmd("botright 10split")
-	vim.cmd("terminal")
-	vim.cmd.startinsert()
-end, { desc = "Open bottom terminal" })
+end, { desc = "Resize window down" })
 
 -- Lean
 vim.keymap.set('n', '<leader>i', function() require('lean.infoview').toggle() end, { desc = 'Toggle Lean Infoview' })
