@@ -62,37 +62,49 @@ vim.keymap.set("t", "<C-l>", [[<C-\><C-n><C-w>l]])
 vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]])
 
 -- Resize windows
-vim.keymap.set("n", "<leader>h", function()
-	if vim.fn.winnr() == vim.fn.winnr("l") then
-		vim.cmd("vertical resize +10")
-	else
-		vim.cmd("vertical resize -10")
-	end
-end, { desc = "Resize window left" })
+local function resize(cmd, side, amt)
+	local dir = vim.fn.winnr() == vim.fn.winnr(side) and amt or -amt
+	vim.cmd(string.format("%s %s%d", cmd, dir > 0 and "+" or "", dir))
+end
 
-vim.keymap.set("n", "<leader>l", function()
-	if vim.fn.winnr() == vim.fn.winnr("l") then
-		vim.cmd("vertical resize -10")
-	else
-		vim.cmd("vertical resize +10")
-	end
-end, { desc = "Resize window right" })
-
-vim.keymap.set("n", "<leader>k", function()
-	if vim.fn.winnr() == vim.fn.winnr("j") then
-		vim.cmd("resize +10")
-	else
-		vim.cmd("resize -10")
-	end
-end, { desc = "Resize window up" })
-
-vim.keymap.set("n", "<leader>j", function()
-	if vim.fn.winnr() == vim.fn.winnr("j") then
-		vim.cmd("resize -10")
-	else
-		vim.cmd("resize +10")
-	end
-end, { desc = "Resize window down" })
+vim.keymap.set("n", "<leader>h", function() resize("vertical resize", "l", 10) end)
+vim.keymap.set("n", "<leader>l", function() resize("vertical resize", "l", -10) end)
+vim.keymap.set("n", "<leader>k", function() resize("resize", "j", 10) end)
+vim.keymap.set("n", "<leader>j", function() resize("resize", "j", -10) end)
 
 -- Lean
 vim.keymap.set('n', '<leader>i', function() require('lean.infoview').toggle() end, { desc = 'Toggle Lean Infoview' })
+
+-- Digraphs
+local digraphs = {
+	-- UI
+	{ 'sq', '▪' }, -- Step / Item
+	{ 'st', '✦' }, -- Highlight / Init
+	{ 'tr', '❯' }, -- Prompt pointer
+	{ 'ok', '✓' }, -- Success
+	{ 'xx', '✗' }, -- Error / Fail
+	{ 'wa', '▲' }, -- Warning
+	{ 'in', 'ℹ' }, -- Info
+	{ 'as', '✱' }, -- Heavy asterisk (Checkpoint / New Best)
+	{ 'bs', '★' }, -- Solid star (Best model)
+
+	-- Deep Learning
+	{ 'pd', '∂' }, -- Partial derivative
+	{ 'gr', '∇' }, -- Gradient (Nabla)
+	{ 'ep', 'ε' }, -- Epsilon / Error
+	{ 'la', 'λ' }, -- Lambda
+	{ 'de', 'Δ' }, -- Delta / Change
+	{ 'sm', '∑' }, -- Summation
+	{ 'it', '∫' }, -- Integral
+
+	-- Logic
+	{ 'df', '≡' }, -- Defined as / Identical
+	{ 'nq', '≠' }, -- Not equal
+	{ 'ap', '≈' }, -- Approximately
+	{ 'rt', '→' }, -- Right arrow
+	{ 'rb', '⇒' }, -- Implies
+}
+
+for _, d in ipairs(digraphs) do
+	vim.fn.digraph_set(d[1], d[2])
+end
