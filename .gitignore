@@ -11,7 +11,7 @@ tmux-client-*.log
 tmux-server-*.log
 tmux-*.log
 
-tmux/.config/tmux/plugins/
 nvim/.config/nvim/lazy-lock.json
-ghostty/.config/ghostty/active-theme.conf
+tmux/.config/tmux/plugins/
 ghostty/.config/ghostty/system.conf
+neomutt/.config/neomutt/secrets

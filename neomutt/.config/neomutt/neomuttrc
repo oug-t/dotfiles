@@ -1,0 +1,46 @@
+# Load external credentials safely
+source ~/.config/neomutt/secrets
+
+# Account setup
+set realname = "Xiyuan Guo"
+set from = "tommyguo039@gmail.com"
+set use_from = yes
+set envelope_from = yes
+
+# imap configuration
+set folder = "imaps://imap.gmail.com:993"
+set spoolfile = "+INBOX"
+set postponed = "+[Gmail]/Drafts"
+set record = "+[Gmail]/Sent Mail"
+set trash = "+[Gmail]/Trash"
+set imap_user = "tommyguo039@gmail.com"
+
+# smtp configuration
+set smtp_url = "smtps://tommyguo039@gmail.com@smtp.gmail.com:465"
+
+# Editor and patch formatting
+set editor = "nvim"
+set text_flowed = no
+set send_charset = "us-ascii:utf-8"
+
+# UI
+set help = no
+set markers = no
+set mark_old = no
+set sort = threads
+set sort_aux = reverse-last-date-received
+set pager_index_lines = 10
+set menu_scroll = yes
+
+# Clean headers
+ignore *
+unignore from: to: cc: date: subject:
+hdr_order from: to: cc: date: subject:
+
+# Quiet monochrome palette
+color normal default default
+color indicator reverse default default
+color tree default default
+color status reverse default default
+color error red default
+color quoted default default
