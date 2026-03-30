@@ -11,21 +11,29 @@ vim.api.nvim_create_autocmd("TermOpen", {
 	end,
 })
 
--- CSO2
-vim.api.nvim_create_autocmd("BufEnter", {
-	pattern = "*/code/cso2/*",
-	group = course_group,
+-- 2-space
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = {
+		"lua",
+		"ruby",
+		"javascript",
+		"typescript",
+		"javascriptreact",
+		"typescriptreact",
+	},
 	callback = function()
-		vim.opt_local.tabstop = 4
-		vim.opt_local.shiftwidth = 4
-		vim.opt_local.softtabstop = 4
+		vim.opt_local.tabstop = 2
+		vim.opt_local.shiftwidth = 2
+		vim.opt_local.softtabstop = 2
 		vim.opt_local.expandtab = true
+		vim.opt_local.colorcolumn = "0"
 	end,
 })
 
--- Python
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = "python",
+-- 4-space
+vim.api.nvim_create_autocmd({ "BufEnter", "FileType" }, {
+	pattern = { "*/code/cso2/*", "python" },
+	group = course_group,
 	callback = function()
 		vim.opt_local.tabstop = 4
 		vim.opt_local.shiftwidth = 4
@@ -44,17 +52,7 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.opt_local.linebreak = true
 		vim.opt_local.spell = true
 		vim.opt_local.spelllang = { "en_us" }
-		vim.keymap.set('n', 'j', 'gj', { buffer = true })
-		vim.keymap.set('n', 'k', 'gk', { buffer = true })
-	end,
-})
-
--- JavaScript / TypeScript
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = { "javascriptreact", "typescriptreact" },
-	callback = function()
-		vim.opt_local.shiftwidth = 2
-		vim.opt_local.tabstop = 2
-		vim.opt_local.expandtab = true
+		vim.keymap.set("n", "j", "gj", { buffer = true })
+		vim.keymap.set("n", "k", "gk", { buffer = true })
 	end,
 })
