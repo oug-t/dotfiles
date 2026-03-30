@@ -11,7 +11,7 @@ vim.api.nvim_create_autocmd("TermOpen", {
 	end,
 })
 
--- 2-space
+-- 2-2-2
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = {
 		"lua",
@@ -30,16 +30,14 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
--- 4-space
-vim.api.nvim_create_autocmd({ "BufEnter", "FileType" }, {
-	pattern = { "*/code/cso2/*", "python" },
-	group = course_group,
+-- 8-8-0
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = { "c", "go" },
 	callback = function()
-		vim.opt_local.tabstop = 4
-		vim.opt_local.shiftwidth = 4
-		vim.opt_local.softtabstop = 4
-		vim.opt_local.expandtab = true
-		vim.opt_local.colorcolumn = "0"
+		vim.opt_local.tabstop = 8
+		vim.opt_local.shiftwidth = 8
+		vim.opt_local.softtabstop = 0
+		vim.opt_local.expandtab = false
 	end,
 })
 

@@ -28,12 +28,11 @@ let g:netrw_banner = 0  " keeps it clean
 set nohlsearch
 set incsearch
 
-" PI is no 3
-set tabstop=8
-set shiftwidth=8
-set softtabstop=0
-set noexpandtab
-set autoindent smartindent
+" 4-4-4
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set expandtab
 
 " Editing
 vnoremap J :m '>+1<CR>gv=gv
@@ -50,8 +49,7 @@ nnoremap <expr> <leader>h (winnr() == winnr('l') ? ':vertical resize +10<CR>' : 
 nnoremap <expr> <leader>l (winnr() == winnr('l') ? ':vertical resize -10<CR>' : ':vertical resize +10<CR>')
 
 " Languages 
-autocmd FileType python setlocal ts=4 sw=4 sts=4 et colorcolumn=0
-let g:python_highlight_all = 1
+autocmd FileType c,go setlocal ts=8 sw=8 sts=0 noexpandtab
 
 " Tmux-navigator
 let g:tmux_navigator_no_mappings = 1
