@@ -1,0 +1,33 @@
+[user]
+    name = Xiyuan Guo
+    email = tommyguo039@gmail.com
+
+[core]
+    editor = nvim
+    excludesfile = ~/.gitignore_global
+
+[color]
+    ui = auto
+
+[init]
+    defaultBranch = main
+
+[pull]
+    rebase = true
+
+[push]
+    default = simple
+    autoSetupRemote = true
+
+[fetch]
+    prune = true
+
+[b4]
+    midmask = https://lore.kernel.org/%s
+    linkmask = https://patch.msgid.link/%s
+    prep-auto-signoff = yes
+    send-auto-cc = yes
+    send-same-thread = yes
+    attestation-check-dkim = yes
+    cache-expire = 10
+    cover-format = dynamic
