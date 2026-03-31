@@ -47,6 +47,7 @@ alias tk='tmux kill-session -t'
 alias m='neomutt'
 alias ipy='ipython'
 alias brewall='(brew update && brew upgrade && brew cleanup && brew doctor)'
+alias gm="gemini"
 
 # Zsh
 autoload -Uz compinit && compinit
