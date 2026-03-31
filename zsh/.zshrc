@@ -32,20 +32,21 @@ bindkey '^[[A' history-search-backward
 bindkey '^[[B' history-search-forward
 
 # Common Aliases
-alias c="clear"
-alias ..="cd .."
-alias ls="eza --icons"
-alias ll="eza -lh --icons --git"
-alias la="eza -lah --icons --git"
-alias tree="eza --tree --icons"
-alias vi="vim"
-alias v="nvim"
+alias c='clear'
+alias ..='cd ..'
+alias ls='eza --icons'
+alias ll='eza -lh --icons --git'
+alias la='eza -lah --icons --git'
+alias tree='eza --tree --icons'
+alias vi='vim'
+alias v='nvim'
 alias ta='tmux attach -t'
 alias tn='tmux new-session -s'
 alias tl='tmux ls'
 alias tk='tmux kill-session -t'
-alias ipy="ipython"
-alias brewall="(brew update && brew upgrade && brew cleanup && brew doctor)"
+alias m='neomutt'
+alias ipy='ipython'
+alias brewall='(brew update && brew upgrade && brew cleanup && brew doctor)'
 
 # Zsh
 autoload -Uz compinit && compinit

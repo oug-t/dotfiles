@@ -16,7 +16,8 @@ set trash = "+[Gmail]/Trash"
 set imap_user = "tommyguo039@gmail.com"
 
 # smtp configuration
-set smtp_url = "smtps://tommyguo039@gmail.com@smtp.gmail.com:465"
+set smtp_authenticators = "login"
+set smtp_url = "smtps://tommyguo039%40gmail.com@smtp.gmail.com:465"
 
 # Editor and patch formatting
 set editor = "nvim"
