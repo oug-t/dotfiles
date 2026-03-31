@@ -9,7 +9,27 @@ return {
       {
         "<leader>ff",
         function()
-          require("telescope.builtin").find_files({ hidden = true })
+          require("telescope.builtin").find_files({
+            hidden = false,
+            file_ignore_patterns = {
+              "%.o$",
+              "%.ko$",
+              "%.a$",
+              "%.mod$",
+              "%.mod%.c$",
+              "%.cmd$",
+              "%.d$",
+              "^tags$",
+              "^cscope%..*",
+              "^%.git/",
+              "%.orig$",
+              "%.rej$",
+              "~$",
+              "^vmlinux$",
+              "^modules%.order$",
+              "^Module%.symvers$",
+            },
+          })
         end,
         desc = "Find Files",
       },
