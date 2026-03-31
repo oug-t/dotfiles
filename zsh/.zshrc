@@ -48,7 +48,12 @@ alias tk='tmux kill-session -t'
 alias m='neomutt'
 alias ipy='ipython'
 alias brewall='(brew update && brew upgrade && brew cleanup && brew doctor)'
-alias gm="gemini"
+alias gm='gemini'
+fix() {
+    local cmd=$(fc -ln -1)
+    echo "Running: $cmd"
+    eval "$cmd" 2>&1 | gemini "Explain the failure and suggest a fix for: $cmd"
+}
 
 # Zsh
 autoload -Uz compinit && compinit

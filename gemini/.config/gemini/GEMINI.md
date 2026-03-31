@@ -15,3 +15,7 @@
 - Systems Engineering: Optimize for bare-metal performance, raw I/O, TUI tool development, and microVM architecture.
 - Mathematics: Provide highly rigorous mathematical proofs. Use Lean theorem prover syntax or formal LaTeX logic when applicable.
 - Data Pipelines: Apply context regarding Convolutional Physics-Informed Neural Networks (ConvPINNs) and 3D surface point data architectures.
+
+## Version Control
+- Git: Use STRICT Conventional Commits format (feat, fix, docs, style, refactor, perf, test, build, ci, chore, revert).
+- Commit Messages: Keep the subject line under 50 characters and use the imperative mood (e.g., "feat: add gemini configuration").
