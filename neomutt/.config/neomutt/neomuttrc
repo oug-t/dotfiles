@@ -44,3 +44,11 @@ color tree default default
 color status reverse default default
 color error red default
 color quoted default default
+
+# Keybindings
+bind index j next-entry
+bind index k previous-entry
+bind pager j next-line
+bind pager k previous-line
+bind generic j next-entry
+bind generic k previous-entry
