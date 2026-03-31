@@ -18,7 +18,7 @@ export PATH="$GOBIN:$PATH"
 # Local secrets
 [ -f "$HOME/.env" ] && source "$HOME/.env"
 
-# History & Shell Options
+# Shell history
 HISTFILE=$HOME/.zhistory
 SAVEHIST=1000
 HISTSIZE=999
@@ -26,6 +26,10 @@ setopt share_history
 setopt hist_expire_dups_first
 setopt hist_ignore_dups
 setopt hist_verify
+setopt auto_pushd
+setopt pushd_ignore_dups
+setopt pushd_silent
+setopt pushd_to_home
 
 # Keybindings
 bindkey '^[[A' history-search-backward
