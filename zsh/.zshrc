@@ -26,6 +26,7 @@ setopt share_history
 setopt hist_expire_dups_first
 setopt hist_ignore_dups
 setopt hist_verify
+setopt autocd
 setopt auto_pushd
 setopt pushd_ignore_dups
 setopt pushd_silent
@@ -37,7 +38,6 @@ bindkey '^[[B' history-search-forward
 
 # Common Aliases
 alias c='clear'
-alias ..='cd ..'
 alias vi='vim'
 alias v='nvim'
 alias tl='tmux ls'
