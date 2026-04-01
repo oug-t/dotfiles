@@ -1,17 +1,17 @@
-# OS
+# OS / Editor junk
 .DS_Store
-
-# Vim
 .netrwhist
 *.swp
 *.swo
 
-# Tmux
-tmux-client-*.log
-tmux-server-*.log
+# Tmux logs
 tmux-*.log
 
-nvim/.config/nvim/lazy-lock.json
+# Secrets & Machine-specific overrides
+.env
+**/*.local
+**/secrets
+**/system.conf
+
+# Plugin source code
 tmux/.config/tmux/plugins/
-ghostty/.config/ghostty/system.conf
-neomutt/.config/neomutt/secrets
