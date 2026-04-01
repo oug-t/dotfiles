@@ -92,6 +92,8 @@ elif [[ "$OS" == "Linux" ]]; then
         eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
     fi
 
+    export PATH=$PATH:/home/xguo/.npm-global/bin
+
     alias vim="vimx"
     alias dup="sudo dnf upgrade --refresh"
     alias ku="qemu-system-x86_64 -m 4G -smp 4 -cpu host -accel kvm -hda ~/vms/kali/kali-disk.qcow2 -display none -nic user,model=virtio,hostfwd=tcp::2222-:22 &"
