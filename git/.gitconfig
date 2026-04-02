@@ -1,5 +1,6 @@
-[include]
-    path = ~/.gitconfig.local
+[user]
+    name = Xiyuan Guo
+    email = tommyguo039@gmail.com
 
 [core]
     editor = nvim
@@ -20,6 +21,21 @@
 
 [fetch]
     prune = true
+
+[credential]
+    helper = /usr/libexec/git-core/git-credential-libsecret
+
+[sendemail]
+    smtpServer = smtp.gmail.com
+    smtpServerPort = 587
+    smtpEncryption = tls
+    smtpUser = tommyguo039@gmail.com
+    confirm = auto
+    annotate = yes
+    transferEncoding = 8bit
+    chainreplyto = false
+    thread = yes
+    suppresscc = self
 
 [b4]
     midmask = https://lore.kernel.org/%s
