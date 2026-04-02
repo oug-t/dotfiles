@@ -3,6 +3,8 @@
 .netrwhist
 *.swp
 *.swo
+*.spl
+*.sug
 
 # Tmux logs
 tmux-*.log
