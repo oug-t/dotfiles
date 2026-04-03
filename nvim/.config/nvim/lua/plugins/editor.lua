@@ -34,7 +34,7 @@ return {
         desc = "Find Files",
       },
       {
-        "<leader>fs",
+        "<leader>fg",
         function()
           require("telescope.builtin").live_grep({
             additional_args = function()
@@ -54,11 +54,25 @@ return {
         desc = "Find Commits",
       },
       {
-        "<leader>fo",
+        "<leader>fb",
         function()
-          require("telescope.builtin").oldfiles()
+          require("telescope.builtin").buffers()
         end,
-        desc = "Find Old",
+        desc = "Find Buffers",
+      },
+      {
+        "<leader>fh",
+        function()
+          require("telescope.builtin").help_tags()
+        end,
+        desc = "Find Help",
+      },
+      {
+        "<leader>fm",
+        function()
+          require("telescope.builtin").marks()
+        end,
+        desc = "Find Marks",
       },
     },
     config = function()
