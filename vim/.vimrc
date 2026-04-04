@@ -40,6 +40,13 @@ if executable('wl-copy')
           \   'paste': { '+': 'wl-paste --no-newline', '*': 'wl-paste --no-newline' },
           \   'cache_enabled': 1,
           \ }
+elseif executable('pbcopy')
+    let g:clipboard = {
+          \   'name': 'pbcopy',
+          \   'copy': { '+': 'pbcopy', '*': 'pbcopy' },
+          \   'paste': { '+': 'pbpaste', '*': 'pbpaste' },
+          \   'cache_enabled': 0,
+          \ }
 endif
 
 " File navigation
