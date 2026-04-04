@@ -1,11 +1,34 @@
 return {
   {
     "stevearc/conform.nvim",
-    event = { "BufReadPre", "BufNewFile" }, -- Load the plugin when a file is opened
+    event = { "BufReadPre", "BufNewFile" },
+    keys = {
+      {
+        "<leader>f",
+        function()
+          require("conform").format({
+            lsp_fallback = true,
+            async = false,
+            timeout_ms = 500,
+          })
+        end,
+        mode = { "n", "v" },
+        desc = "Format buffer or range",
+      },
+      {
+        "<leader>sw",
+        function()
+          local save_cursor = vim.fn.getpos(".")
+          vim.cmd([[silent! '{,'}s/\([.?!]\)\s\+/\1\r/g]])
+          vim.cmd("nohlsearch")
+          vim.fn.setpos(".", save_cursor)
+        end,
+        mode = "n",
+        desc = "Semantic Wrap Paragraph",
+      },
+    },
     config = function()
-      local conform = require("conform")
-
-      conform.setup({
+      require("conform").setup({
         formatters_by_ft = {
           lua = { "stylua" },
           go = { "gofmt" },
@@ -22,14 +45,6 @@ return {
           python = { "ruff_format" },
         },
       })
-
-      vim.keymap.set({ "n", "v" }, "<leader>f", function()
-        conform.format({
-          lsp_fallback = true,
-          async = false,
-          timeout_ms = 500,
-        })
-      end, { desc = "Format buffer or range" })
     end,
   },
   {
