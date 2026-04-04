@@ -55,8 +55,10 @@ vim.api.nvim_create_autocmd("FileType", {
       vim.opt_local.textwidth = 72
       vim.opt_local.colorcolumn = "73"
     else
-      vim.opt_local.textwidth = 80
-      vim.opt_local.colorcolumn = "81"
+      vim.opt_local.textwidth = 0
+      vim.opt_local.colorcolumn = ""
+      vim.opt_local.wrap = true
+      vim.opt_local.linebreak = true
     end
   end,
 })
