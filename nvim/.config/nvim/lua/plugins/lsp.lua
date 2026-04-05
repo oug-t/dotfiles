@@ -19,7 +19,7 @@ return {
         "<leader>sw",
         function()
           local save_cursor = vim.fn.getpos(".")
-          vim.cmd([[silent! '{,'}s/\([.?!]\)\s\+/\1\r/g]])
+          vim.cmd([[silent! '{,'}s/\v([.?!][)"']*)\s+/\1\r/g]])
           vim.cmd("nohlsearch")
           vim.fn.setpos(".", save_cursor)
         end,
