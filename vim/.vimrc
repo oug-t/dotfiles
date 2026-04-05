@@ -31,22 +31,23 @@ set softtabstop=4
 set expandtab
 
 " Clipboard
-set clipboard=unnamedplus
+if has('mac') || has('macunix')
+    " macOS uses the * register for the system clipboard
+    set clipboard=unnamed
+else
+    " Linux uses the + register
+    set clipboard=unnamedplus
+endif
 
-if executable('wl-copy')
-    let g:clipboard = {
-          \   'name': 'wl-utils',
-          \   'copy': { '+': 'wl-copy', '*': 'wl-copy' },
-          \   'paste': { '+': 'wl-paste --no-newline', '*': 'wl-paste --no-newline' },
-          \   'cache_enabled': 1,
-          \ }
-elseif executable('pbcopy')
-    let g:clipboard = {
-          \   'name': 'pbcopy',
-          \   'copy': { '+': 'pbcopy', '*': 'pbcopy' },
-          \   'paste': { '+': 'pbpaste', '*': 'pbpaste' },
-          \   'cache_enabled': 0,
-          \ }
+if has('nvim')
+    if executable('wl-copy')
+        let g:clipboard = {
+              \   'name': 'wl-utils',
+              \   'copy': { '+': 'wl-copy', '*': 'wl-copy' },
+              \   'paste': { '+': 'wl-paste --no-newline', '*': 'wl-paste --no-newline' },
+              \   'cache_enabled': 1,
+              \ }
+    endif
 endif
 
 " File navigation
