@@ -9,27 +9,7 @@ return {
       {
         "<leader>ff",
         function()
-          require("telescope.builtin").find_files({
-            hidden = false,
-            file_ignore_patterns = {
-              "%.o$",
-              "%.ko$",
-              "%.a$",
-              "%.mod$",
-              "%.mod%.c$",
-              "%.cmd$",
-              "%.d$",
-              "^tags$",
-              "^cscope%..*",
-              "^%.git/",
-              "%.orig$",
-              "%.rej$",
-              "~$",
-              "^vmlinux$",
-              "^modules%.order$",
-              "^Module%.symvers$",
-            },
-          })
+          require("telescope.builtin").find_files({ hidden = true })
         end,
         desc = "Find Files",
       },
@@ -38,9 +18,7 @@ return {
         function()
           require("telescope.builtin").live_grep({
             additional_args = function()
-              return {
-                "--hidden",
-              }
+              return { "--hidden" }
             end,
           })
         end,
@@ -77,6 +55,29 @@ return {
     },
     config = function()
       require("telescope").setup({
+        defaults = {
+          file_ignore_patterns = {
+            "node_modules/",
+            "%.venv/",
+            "__pycache__/",
+            "%.git/",
+            "%.o$",
+            "%.ko$",
+            "%.a$",
+            "%.mod$",
+            "%.mod%.c$",
+            "%.cmd$",
+            "%.d$",
+            "^tags$",
+            "^cscope%..*",
+            "%.orig$",
+            "%.rej$",
+            "~$",
+            "^vmlinux$",
+            "^modules%.order$",
+            "^Module%.symvers$",
+          },
+        },
         extensions = {
           fzf = {},
         },
