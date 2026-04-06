@@ -86,6 +86,15 @@ return {
     end,
   },
   {
+    "tpope/vim-fugitive",
+    cmd = { "Gvdiffsplit", "Git" },
+    keys = {
+      { "<leader>gs", vim.cmd.Git, desc = "Git Status" },
+      { "<leader>gd", "<cmd>Gvdiffsplit!<cr>", desc = "Git Diff" },
+      { "<leader>gb", "<cmd>Git blame<cr>", desc = "Git Blame" },
+    },
+  },
+  {
     "stevearc/oil.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
@@ -108,18 +117,5 @@ return {
         end,
       })
     end,
-  },
-  {
-    "mbbill/undotree",
-    keys = { { "<leader>u", vim.cmd.UndotreeToggle, desc = "Toggle UndoTree" } },
-  },
-  {
-    "tpope/vim-fugitive",
-    cmd = { "Gvdiffsplit", "Git" },
-    keys = {
-      { "<leader>gs", vim.cmd.Git, desc = "Git Status" },
-      { "<leader>gd", "<cmd>Gvdiffsplit!<cr>", desc = "Git Diff" },
-      { "<leader>gb", "<cmd>Git blame<cr>", desc = "Git Blame" },
-    },
   },
 }
