@@ -80,9 +80,8 @@ augroup HighlightYank
 augroup END
 
 " Languages 
-" autocmd FileType c,go setlocal ts=8 sw=8 sts=0 noexpandtab
-autocmd FileType python setlocal ts=4 sw=4 sts=4 expandtab
-autocmd FileType javascript,svelte setlocal ts=2 sw=2 sts=2 expandtab
+autocmd FileType go setlocal ts=8 sw=8 sts=0 noexpandtab
+autocmd FileType javascript,javascriptreact,typescript,typescriptreact,svelte setlocal ts=2 sw=2 sts=2 expandtab
 
 " Git
 nnoremap <leader>gs :Git<CR>
