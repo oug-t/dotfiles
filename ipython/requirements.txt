@@ -1,16 +1,8 @@
-# Deep Learning
 numpy
+scipy
 matplotlib
 torch
 torchvision
-scipy
-
-# IPython
 ipython
-
-# Utilities
 tqdm
-pathlib
-
-# Format
 ruff
