@@ -56,6 +56,8 @@ end
 -- Blackboard white chalk
 vim.cmd("syntax off")
 vim.cmd.colorscheme("quiet")
+vim.api.nvim_set_hl(0, "Comment", { link = "Normal" })
+vim.api.nvim_set_hl(0, "String", { link = "Normal" })
 
 -- Terminal
 local terminal_palette = {
