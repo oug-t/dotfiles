@@ -34,10 +34,10 @@ vim.api.nvim_create_autocmd("FileType", {
 -- PI is no three
 vim.api.nvim_create_autocmd("FileType", {
   group = my_augroup,
-  pattern = { "c" }, 
+  pattern = { "c" },
   callback = function(args)
     local filepath = vim.api.nvim_buf_get_name(args.buf)
-    
+
     if filepath:match("src/linux%-staging") then
       vim.opt_local.tabstop = 8
       vim.opt_local.shiftwidth = 8
