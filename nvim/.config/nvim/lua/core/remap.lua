@@ -70,11 +70,6 @@ vim.keymap.set("n", "<leader>j", function()
   resize("resize", "j", -10)
 end)
 
--- Lean
-vim.keymap.set("n", "<leader>i", function()
-  require("lean.infoview").toggle()
-end, { desc = "Toggle Lean Infoview" })
-
 -- Digraphs
 local digraphs = {
   -- UI
