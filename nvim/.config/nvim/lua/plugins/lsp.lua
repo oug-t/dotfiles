@@ -43,6 +43,7 @@ return {
           yaml = { "prettier" },
           markdown = { "prettier" },
           python = { "ruff_format" },
+          r = { "styler" },
         },
       })
     end,
@@ -91,6 +92,7 @@ return {
           "html",
           "marksman",
           "gopls",
+          "r_language_server",
         },
         handlers = {
           function(server_name)
