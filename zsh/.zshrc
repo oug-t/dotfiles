@@ -95,11 +95,6 @@ elif [[ "$OS" == "Linux" ]]; then
 
     alias vim="vimx"
     alias dup="sudo dnf upgrade --refresh"
-    alias q-kali="qemu-system-x86_64 -m 4G -smp 4 -cpu host -accel kvm -hda ~/vms/kali/kali-disk.qcow2 -nic user,model=virtio,hostfwd=tcp::2222-:22"
-    alias ku="q-kali -display none -daemonize"
-    alias kg="q-kali -device intel-hda -device hda-duplex -device virtio-vga-gl -display gtk,gl=on &"
-    alias ktrial="q-kali -display none -snapshot -daemonize"
-    alias kd="ssh -t -p 2222 tommy@localhost 'sudo poweroff'"
 
     source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
     source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
