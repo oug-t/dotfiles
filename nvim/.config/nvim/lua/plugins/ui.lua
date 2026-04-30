@@ -1,5 +1,4 @@
 return {
-  "ThePrimeagen/vim-be-good",
   {
     "christoomey/vim-tmux-navigator",
     lazy = false,
