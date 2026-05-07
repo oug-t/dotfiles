@@ -2,8 +2,15 @@
     border: none;
     border-radius: 0;
     font-family: "JetBrains Mono", "Noto Sans Devanagari", "monospace";
-    font-size: 13px;
     min-height: 0;
+}
+
+window#waybar.builtin {
+    font-size: 15px;
+}
+
+window#waybar.external {
+    font-size: 11px;
 }
 
 window#waybar {

@@ -1,45 +1,96 @@
-{
-    "layer": "top",
-    "position": "top",
-    "height": 24,
-    "modules-left": ["sway/workspaces"],
-    "modules-right": ["network", "battery", "clock"],
-    "sway/workspaces": {
-        "disable-scroll": true,
-        "all-outputs": true,
-        "format": "{icon}",
-        "format-icons": {
-            "1": "<span font_size='125%'>१</span>",
-            "2": "<span font_size='125%'>२</span>",
-            "3": "<span font_size='125%'>३</span>",
-            "4": "<span font_size='125%'>४</span>",
-            "5": "<span font_size='125%'>५</span>",
-            "6": "<span font_size='125%'>६</span>",
-            "7": "<span font_size='125%'>७</span>",
-            "8": "<span font_size='125%'>८</span>",
-            "9": "<span font_size='125%'>९</span>"
+[
+    {
+        "output": "eDP-1",
+        "name": "builtin",
+        "layer": "top",
+        "position": "top",
+        "height": 28,
+        "modules-left": ["sway/workspaces"],
+        "modules-right": ["network", "battery", "clock"],
+        "sway/workspaces": {
+            "disable-scroll": true,
+            "all-outputs": true,
+            "format": "{icon}",
+            "format-icons": {
+                "1": "<span font_size='125%'>१</span>",
+                "2": "<span font_size='125%'>२</span>",
+                "3": "<span font_size='125%'>३</span>",
+                "4": "<span font_size='125%'>४</span>",
+                "5": "<span font_size='125%'>५</span>",
+                "6": "<span font_size='125%'>६</span>",
+                "7": "<span font_size='125%'>७</span>",
+                "8": "<span font_size='125%'>८</span>",
+                "9": "<span font_size='125%'>९</span>"
+            }
+        },
+        "network": {
+            "format-wifi": "{essid}",
+            "format-ethernet": "ETH",
+            "format-disconnected": "DISCONNECTED",
+            "tooltip": false
+        },
+        "battery": {
+            "bat": "macsmc-battery",
+            "interval": 5,
+            "states": {
+                "warning": 30,
+                "critical": 15
+            },
+            "format": "{capacity}%",
+            "format-charging": "{capacity}% CHG",
+            "format-plugged": "{capacity}% PLG",
+            "format-full": "{capacity}% FULL",
+            "format-alt": "{capacity}% ({time})"
+        },
+        "clock": {
+            "format": "{:%a %b %d | %H:%M}"
         }
     },
-    "network": {
-        "format-wifi": "{essid}",
-        "format-ethernet": "ETH",
-        "format-disconnected": "DISCONNECTED",
-        "tooltip": false
-    },
-    "battery": {
-        "bat": "macsmc-battery",
-        "interval": 5,
-        "states": {
-            "warning": 30,
-            "critical": 15
+    {
+        "output": "HDMI-A-1",
+        "name": "external",
+        "layer": "top",
+        "position": "top",
+        "height": 20,
+        "modules-left": ["sway/workspaces"],
+        "modules-right": ["network", "battery", "clock"],
+        "sway/workspaces": {
+            "disable-scroll": true,
+            "all-outputs": true,
+            "format": "{icon}",
+            "format-icons": {
+                "1": "<span font_size='125%'>१</span>",
+                "2": "<span font_size='125%'>२</span>",
+                "3": "<span font_size='125%'>३</span>",
+                "4": "<span font_size='125%'>४</span>",
+                "5": "<span font_size='125%'>५</span>",
+                "6": "<span font_size='125%'>६</span>",
+                "7": "<span font_size='125%'>७</span>",
+                "8": "<span font_size='125%'>८</span>",
+                "9": "<span font_size='125%'>९</span>"
+            }
         },
-        "format": "{capacity}%",
-        "format-charging": "{capacity}% CHG",
-        "format-plugged": "{capacity}% PLG",
-        "format-full": "{capacity}% FULL",
-        "format-alt": "{capacity}% ({time})"
-    },
-    "clock": {
-        "format": "{:%a %b %d | %H:%M}"
+        "network": {
+            "format-wifi": "{essid}",
+            "format-ethernet": "ETH",
+            "format-disconnected": "DISCONNECTED",
+            "tooltip": false
+        },
+        "battery": {
+            "bat": "macsmc-battery",
+            "interval": 5,
+            "states": {
+                "warning": 30,
+                "critical": 15
+            },
+            "format": "{capacity}%",
+            "format-charging": "{capacity}% CHG",
+            "format-plugged": "{capacity}% PLG",
+            "format-full": "{capacity}% FULL",
+            "format-alt": "{capacity}% ({time})"
+        },
+        "clock": {
+            "format": "{:%a %b %d | %H:%M}"
+        }
     }
-}
+]
