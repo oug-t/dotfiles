@@ -3,10 +3,10 @@ profile {
 }
 
 profile {
-    output HDMI-A-1 scale 1.5 position 0,0
-    output eDP-1 scale 1.85 position 463,1440
+    output HDMI-A-1 scale 2.0 position 0,0
+    output eDP-1 scale 1.85 position 143,1080
 }
 
 profile {
-    output HDMI-A-1 scale 1.5
+    output HDMI-A-1 scale 2.0
 }
