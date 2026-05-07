@@ -1,0 +1,43 @@
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "Noto Sans Devanagari", "monospace";
+    font-size: 16px;
+    min-height: 0;
+}
+
+window#waybar {
+    background: #000000;
+    color: #ffffff;
+}
+
+#workspaces button {
+    padding: 0 12px;
+    background: transparent;
+    color: #555555;
+}
+
+#workspaces button.focused {
+    color: #ffffff;
+}
+
+#workspaces button.urgent {
+    color: #eb4d4b;
+}
+
+#clock, #network, #battery {
+    padding: 0 15px;
+    color: #cccccc;
+}
+
+#battery.charging {
+    color: #ffffff;
+}
+
+#battery.warning {
+    color: #aaaaaa;
+}
+
+#battery.critical {
+    color: #ffffff;
+}

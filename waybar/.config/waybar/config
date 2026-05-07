@@ -1,0 +1,45 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 32,
+    "modules-left": ["sway/workspaces"],
+    "modules-right": ["network", "battery", "clock"],
+    "sway/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "format": "{icon}",
+        "format-icons": {
+            "1": "१",
+            "2": "२",
+            "3": "३",
+            "4": "४",
+            "5": "५",
+            "6": "६",
+            "7": "७",
+            "8": "८",
+            "9": "९"
+        }
+    },
+    "network": {
+        "format-wifi": "{essid}",
+        "format-ethernet": "ETH",
+        "format-disconnected": "DISCONNECTED",
+        "tooltip": false
+    },
+    "battery": {
+        "bat": "macsmc-battery",
+        "interval": 5,
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{capacity}%",
+        "format-charging": "{capacity}% CHG",
+        "format-plugged": "{capacity}% PLG",
+        "format-full": "{capacity}% FULL",
+        "format-alt": "{capacity}% ({time})"
+    },
+    "clock": {
+        "format": "{:%b %d | %H:%M}"
+    }
+}
