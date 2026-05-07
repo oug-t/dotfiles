@@ -1,7 +1,4 @@
 #!/bin/bash
-# Kill other instances of this script
-pkill -f $(basename $0) || true
-
 DAY_WALLPAPER="/home/xguo/dotfiles/assets/f44-day.png"
 NIGHT_WALLPAPER="/home/xguo/dotfiles/assets/f44-night.png"
 
