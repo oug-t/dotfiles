@@ -18,6 +18,10 @@ input "type:keyboard" {
     xkb_options ctrl:swapcaps
 }
 
+input "type:pointer" {
+    pointer_accel 0.3
+}
+
 input "type:touchpad" {
     dwt enabled
     tap disabled
