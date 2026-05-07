@@ -4,5 +4,9 @@ profile {
 
 profile {
     output eDP-1 scale 1.75 position 0,0
-    output HDMI-A-1 scale 1.5 position 1728,0
+    output HDMI-A-1 scale 2.0 position 1728,0
+}
+
+profile {
+    output HDMI-A-1 scale 2.0
 }
