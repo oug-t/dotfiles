@@ -1,0 +1,6 @@
+[Apple Touchpad Edge Palm Rejection]
+MatchUdevType=touchpad
+MatchName=*Apple*MTP*
+# Increase the edge zone to 15% of the width (default is ~8%)
+AttrPalmEdgeThreshold=15
+# Remove the aggressive size/pressure filters that made it unusable

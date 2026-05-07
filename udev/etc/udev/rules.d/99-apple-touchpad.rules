@@ -1,0 +1,1 @@
+ACTION=="add|change", KERNEL=="event*", ATTRS{name}=="Apple MTP multi-touch", ENV{LIBINPUT_MODEL_APPLE_TOUCHPAD}="1"
