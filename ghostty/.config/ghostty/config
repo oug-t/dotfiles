@@ -6,6 +6,5 @@ window-padding-x = 10
 window-padding-y = 10
 window-padding-color = extend
 font-family = "JetBrains Mono"
-font-size = 7
-config-file = ?mac.conf
+font-size = 13
 theme = black-metal-dark-funeral
