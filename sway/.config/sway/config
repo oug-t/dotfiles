@@ -106,3 +106,7 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 xwayland enable
+
+# Handle laptop lid
+bindswitch lid:on output eDP-1 disable
+bindswitch lid:off output eDP-1 enable
