@@ -1,34 +1,47 @@
 #!/bin/bash
-# Professional Wallpaper & Theme Daemon
-# Syncs Fedora 44 assets and system color-scheme
 
 PIDFILE="/tmp/sway-wallpaper.pid"
 
-# Kill existing instance if it exists
 if [ -f "$PIDFILE" ]; then
     old_pid=$(cat "$PIDFILE")
-    kill "$old_pid" 2>/dev/null
+    if [ -n "$old_pid" ] && ps -p "$old_pid" > /dev/null; then
+        kill "$old_pid" 2>/dev/null
+    fi
 fi
 echo "$$" > "$PIDFILE"
 
 DAY_WALLPAPER="/home/xguo/dotfiles/assets/f44-day.png"
 NIGHT_WALLPAPER="/home/xguo/dotfiles/assets/f44-night.png"
 
+LAST_WALLPAPER=""
+LAST_OUTPUTS=0
+
 while true; do
+    if ! pgrep -x sway > /dev/null; then
+        exit 0
+    fi
+
     HOUR=$(date +%H)
     if [ "$HOUR" -ge 07 ] && [ "$HOUR" -lt 19 ]; then
-        # Day: 7 AM - 7 PM
         WALLPAPER=$DAY_WALLPAPER
-        gsettings set org.gnome.desktop.interface color-scheme 'prefer-light'
+        SCHEME='prefer-light'
     else
-        # Night: 7 PM - 7 AM
         WALLPAPER=$NIGHT_WALLPAPER
-        gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
+        SCHEME='prefer-dark'
     fi
     
-    # Apply to all outputs (Built-in and External)
-    swaymsg "output * bg $WALLPAPER fill"
+    CURRENT_OUTPUTS=$(swaymsg -t get_outputs | jq '. | length' 2>/dev/null)
     
-    # Wait 5 minutes before checking again
-    sleep 300
+    if [ "$WALLPAPER" != "$LAST_WALLPAPER" ] || \
+       [ "$CURRENT_OUTPUTS" != "$LAST_OUTPUTS" ] || \
+       ! pgrep -x swaybg > /dev/null; then
+        
+        gsettings set org.gnome.desktop.interface color-scheme "$SCHEME"
+        swaymsg "output * bg $WALLPAPER fill"
+        
+        LAST_WALLPAPER=$WALLPAPER
+        LAST_OUTPUTS=$CURRENT_OUTPUTS
+    fi
+    
+    sleep 10
 done
