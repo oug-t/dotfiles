@@ -1,6 +1,6 @@
 [user]
-    name = Xiyuan Guo
-    email = tommyguo039@gmail.com
+	name = xguo
+	email = xguo@example.com
 
 [core]
     editor = nvim

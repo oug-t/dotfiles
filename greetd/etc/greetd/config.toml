@@ -1,6 +1,0 @@
-[terminal]
-vt = 1
-
-[default_session]
-command = "tuigreet --time --remember --cmd sway --greeting 'Fedora Asahi Remix' --asterisks --container-padding 2 --theme 'border=magenta;text=cyan;prompt=green;user=yellow;caps=red'"
-user = "greetd"

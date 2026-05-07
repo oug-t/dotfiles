@@ -25,6 +25,7 @@ input "type:touchpad" {
     accel_profile flat
     pointer_accel 0.4
     scroll_factor 0.5
+    click_method clickfinger
 }
 
 exec_always ~/.config/sway/wallpaper.sh
