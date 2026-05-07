@@ -32,7 +32,7 @@ input "type:touchpad" {
     click_method clickfinger
 }
 
-output * bg /usr/share/backgrounds/schroedinger-cat/default/wide/schroedinger-cat.jpg fill
+output * bg /usr/share/backgrounds/f26/default/wide/f26.png fill
 
 exec_always "pkill waybar; sleep 0.1; waybar"
 exec_always pkill kanshi; sleep 0.1; kanshi
