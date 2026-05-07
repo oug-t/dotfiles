@@ -85,26 +85,16 @@ bindsym $mod+Shift+9 move container to workspace number 9
 
 
 
-# Special functions via Fn + F-keys
-bindsym F1  exec brightnessctl set 5%-
-bindsym F2  exec brightnessctl set 5%+
-# F3/F4 are often Mission Control/Spotlight, F5/F6 Brightness/Backlight
-bindsym F7  exec playerctl previous
-bindsym F8  exec playerctl play-pause
-bindsym F9  exec playerctl next
-bindsym F10 exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
-bindsym F11 exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
-bindsym F12 exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
+# Media and Brightness controls (Standard Sway approach)
+bindsym XF86AudioRaiseVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
+bindsym XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
+bindsym XF86AudioMute exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+bindsym XF86MonBrightnessUp exec brightnessctl set 5%+
+bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
 
-# Map Media keys back to standard F-keys (Function Keys as Default)
-bindsym XF86MonBrightnessDown exec swaymsg key F1
-bindsym XF86MonBrightnessUp   exec swaymsg key F2
-bindsym XF86AudioPrev          exec swaymsg key F7
-bindsym XF86AudioPlay          exec swaymsg key F8
-bindsym XF86AudioNext          exec swaymsg key F9
-bindsym XF86AudioMute          exec swaymsg key F10
-bindsym XF86AudioLowerVolume   exec swaymsg key F11
-bindsym XF86AudioRaiseVolume   exec swaymsg key F12
 
 
 mode "resize" {
