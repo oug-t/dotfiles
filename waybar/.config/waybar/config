@@ -1,7 +1,7 @@
 {
     "layer": "top",
     "position": "top",
-    "height": 32,
+    "height": 24,
     "modules-left": ["sway/workspaces"],
     "modules-right": ["network", "battery", "clock"],
     "sway/workspaces": {
@@ -9,15 +9,15 @@
         "all-outputs": true,
         "format": "{icon}",
         "format-icons": {
-            "1": "१",
-            "2": "२",
-            "3": "३",
-            "4": "४",
-            "5": "५",
-            "6": "६",
-            "7": "७",
-            "8": "८",
-            "9": "९"
+            "1": "<span font_size='125%'>१</span>",
+            "2": "<span font_size='125%'>२</span>",
+            "3": "<span font_size='125%'>३</span>",
+            "4": "<span font_size='125%'>४</span>",
+            "5": "<span font_size='125%'>५</span>",
+            "6": "<span font_size='125%'>६</span>",
+            "7": "<span font_size='125%'>७</span>",
+            "8": "<span font_size='125%'>८</span>",
+            "9": "<span font_size='125%'>९</span>"
         }
     },
     "network": {
@@ -40,6 +40,6 @@
         "format-alt": "{capacity}% ({time})"
     },
     "clock": {
-        "format": "{:%b %d | %H:%M}"
+        "format": "{:%a %b %d | %H:%M}"
     }
 }
