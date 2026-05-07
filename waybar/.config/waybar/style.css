@@ -6,11 +6,8 @@
 }
 
 window#waybar {
-    background: rgba(0, 0, 0, 0.9);
+    background: #000000;
     color: #eeeeee;
-    border-radius: 8px;
-    transition-property: background-color;
-    transition-duration: .5s;
 }
 
 window#waybar.builtin {
