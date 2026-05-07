@@ -20,10 +20,11 @@ input "type:keyboard" {
 
 input "type:touchpad" {
     dwt enabled
-    tap enabled
+    tap disabled
     natural_scroll enabled
     accel_profile flat
-    pointer_accel 0.2
+    pointer_accel 0.4
+    scroll_factor 0.5
 }
 
 exec_always ~/.config/sway/wallpaper.sh
