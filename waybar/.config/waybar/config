@@ -4,7 +4,10 @@
         "name": "builtin",
         "layer": "top",
         "position": "top",
-        "height": 28,
+        "height": 32,
+        "margin-top": 5,
+        "margin-left": 10,
+        "margin-right": 10,
         "modules-left": ["sway/workspaces"],
         "modules-right": ["network", "battery", "clock"],
         "sway/workspaces": {
@@ -51,7 +54,10 @@
         "name": "external",
         "layer": "top",
         "position": "top",
-        "height": 20,
+        "height": 28,
+        "margin-top": 5,
+        "margin-left": 10,
+        "margin-right": 10,
         "modules-left": ["sway/workspaces"],
         "modules-right": ["network", "battery", "clock"],
         "sway/workspaces": {

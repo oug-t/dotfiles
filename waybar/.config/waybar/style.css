@@ -5,27 +5,32 @@
     min-height: 0;
 }
 
+window#waybar {
+    background: rgba(0, 0, 0, 0.9);
+    color: #eeeeee;
+    border-radius: 8px;
+    transition-property: background-color;
+    transition-duration: .5s;
+}
+
 window#waybar.builtin {
     font-size: 15px;
 }
 
 window#waybar.external {
-    font-size: 13px;
-}
-
-window#waybar {
-    background: #000000;
-    color: #ffffff;
+    font-size: 14px;
 }
 
 #workspaces button {
-    padding: 0 8px;
+    padding: 0 10px;
     background: transparent;
-    color: #555555;
+    color: #777777;
+    border-bottom: 2px solid transparent;
 }
 
 #workspaces button.focused {
     color: #ffffff;
+    border-bottom: 2px solid #ffffff;
 }
 
 #workspaces button.urgent {
@@ -33,8 +38,8 @@ window#waybar {
 }
 
 #clock, #network, #battery {
-    padding: 0 15px;
-    color: #cccccc;
+    padding: 0 12px;
+    color: #bbbbbb;
 }
 
 #battery.charging {
@@ -42,9 +47,9 @@ window#waybar {
 }
 
 #battery.warning {
-    color: #aaaaaa;
+    color: #ffaa00;
 }
 
 #battery.critical {
-    color: #ffffff;
+    color: #ff0000;
 }
