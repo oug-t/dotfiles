@@ -8,13 +8,6 @@
 window#waybar {
     background: #000000;
     color: #eeeeee;
-}
-
-window#waybar.builtin {
-    font-size: 15px;
-}
-
-window#waybar.external {
     font-size: 14px;
 }
 
