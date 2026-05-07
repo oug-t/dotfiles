@@ -30,6 +30,7 @@ input "type:touchpad" {
 
 exec_always ~/.config/sway/wallpaper.sh
 exec_always "pkill waybar; sleep 0.1; waybar"
+exec_always pkill kanshi; sleep 0.1; kanshi
 
 client.focused          #ffffff #000000 #ffffff #000000   #ffffff
 client.unfocused        #000000 #000000 #555555 #000000   #000000
@@ -91,5 +92,4 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
-output eDP-1 scale 1.75
 xwayland enable
